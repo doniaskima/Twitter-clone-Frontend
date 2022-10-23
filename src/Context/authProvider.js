@@ -40,8 +40,14 @@ const AuthProvider = ({ children }) => {
         console.log(error.message);
       }
     }
+
+    function validateEmail(email) {
+      return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        email
+      );
+    }
     return (
-    <AuthContext.Provider value={{ user, token, loginUserWithCredentials }}>
+    <AuthContext.Provider value={{ user, token, loginUserWithCredentials,signupUserWithCredentials,validateEmail, }}>
       {children}
     </AuthContext.Provider>
   );
