@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import {useAuth} from "../Context/authProvider"
+import {useAuth} from "../Context/authProvider";
+
 
 const Login = () => {
   const { loginUserWithCredentials, validateEmail } = useAuth();
@@ -30,6 +31,13 @@ const Login = () => {
             <div className="">
               <label htmlFor="email" className="font-semibold">Email</label>
               <input ocChange={(e)=>{setEmail(e.target.value)}} placeholdre="Your password" id="password" value={password} className="bg-transparent rounded-md w-11/12 p-2 flex items-center"/>
+            </div>
+            <div>
+              <label htmlFor="password" className="font-semibold">Password</label>
+              <div className="border-2 border-gray-400 bg-white rounded-md flex items-center">
+                <input onChange={(e)=>setPassword(e.target.value)} type="password" value={password} className="bg-transparent rounded-md"/>
+              </div>
+        
             </div>
 
           </form>
