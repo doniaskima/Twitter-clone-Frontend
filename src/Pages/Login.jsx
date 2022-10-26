@@ -23,23 +23,7 @@ const Login = () => {
         <h1 className="text-5xl font-semibold mb-4">Twitter Clone</h1>
         <p className="text-red-50 font-medium">{error}</p>
         <div className="text-left shadow-lg w-96 p-4 bg-gray-200 rounded-md mt-2 ">
-          <form
-            onSubmit={(e) => {
-              loginHandler(e);
-            }}
-          >
-            <div className="">
-              <label htmlFor="email" className="font-semibold">Email</label>
-              <input ocChange={(e)=>{setEmail(e.target.value)}} placeholdre="Your password" id="password" value={password} className="bg-transparent rounded-md w-11/12 p-2 flex items-center"/>
-            </div>
-            <div>
-              <label htmlFor="password" className="font-semibold">Password</label>
-              <div className="border-2 border-gray-400 bg-white rounded-md flex items-center">
-                <input onChange={(e)=>setPassword(e.target.value)} type="password" value={password} className="bg-transparent rounded-md"/>
-              </div>
-            </div>
-
-          </form>
+          
         </div>
         
       </div>
