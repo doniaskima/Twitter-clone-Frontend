@@ -37,7 +37,6 @@ const Login = () => {
               <div className="border-2 border-gray-400 bg-white rounded-md flex items-center">
                 <input onChange={(e)=>setPassword(e.target.value)} type="password" value={password} className="bg-transparent rounded-md"/>
               </div>
-        
             </div>
 
           </form>
