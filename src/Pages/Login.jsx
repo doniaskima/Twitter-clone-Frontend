@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import {useAuth} from "../Context/authProvider";
-
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { loginUserWithCredentials, validateEmail } = useAuth();
@@ -15,7 +15,23 @@ const Login = () => {
     event.preventDefault();
     setError("");
     setLoading(true);
-  }
+    console.log(validateEmail(email));
+    if (validateEmail(email)) {
+      const { message, success } = await loginUserWithCredentials(
+        email,
+        password
+      );
+      if (success) {
+        setLoading(false);
+        return;
+      }
+      setLoading(false);
+      setError(message);
+      return;
+    }
+    setError("Invalid Email");
+    setLoading(false);
+  };
 
   return (
     <div className="h-screen flex justify-center">
@@ -34,7 +50,16 @@ const Login = () => {
             <div>
               <label htmlFor="password" className="font-semibold">Password</label>
               <div className="border-2 border-gray-400 bg-white rounded-md flex-items-centered">
-                <input type="text" id="password" placeholder="Enter your password" value={password} className="bg-transparent rounded-md w-11/12 p-2 focus:outline-none" />
+              <input
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  placeholder="Your Password"
+                  id="password"
+                  value={password}
+                  type={showPassword ? "text" : "password"}
+                  className="bg-transparent rounded-md w-11/12 p-2 focus:outline-none"
+                />
                 {
                   showPassword ? (
                     <i
@@ -60,8 +85,10 @@ const Login = () => {
              </button>
             </div>
           </form>
-          <div className="text-center">
-
+          <div className="text-center mt-4">
+            <p className="font-semibold">
+                 Dont have an account ?   
+            </p>
           </div>
         </div>
         
