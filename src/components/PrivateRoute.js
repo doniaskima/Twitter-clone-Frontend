@@ -6,7 +6,7 @@ const PrivateRouter = ({ component: Component, path }) => {
     return user == null ? (
         <Navigate to="/"/>
     ) : (
-           <Component path="/"/> 
+            <Component path={path} /> 
     )
 }
 
