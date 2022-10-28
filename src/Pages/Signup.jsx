@@ -13,7 +13,7 @@ const Signup = () => {
     event.preventDefault();
   }
   return (
-    <div className="h-screen flex justfy-center">
+    <div className="h-screen flex justify-center">
       <div className="text-center mt-40">
         <h1 className="text-5xl font-semibold">Twitter Clone</h1>
         <div className="bg-gray-200 p-4 text-left rounded-md">
@@ -38,6 +38,15 @@ const Signup = () => {
                 callback={setUsername}
               /> 
             </div>
+            <div>
+              <label htmlFor="password" id="password-input-title" labelText="Password" />
+              <Input id="password" value={password} placeholder="Password" ariaLabelledBy="password-input-title" callback={setPassword} />
+            </div>
+            <div>
+            <label htmlFor="confirmPassword" id="confirmPassword-input-title" labelText="Confirm Password" />
+              <Input id="confirmPassword" value={confirmPassword} placeholder="Password" ariaLabelledBy="password-input-title" callback={setConfirmPassword} />
+            </div>
+            <button type="submit">Signup</button>
           </form>
         </div>
       </div>
