@@ -19,7 +19,7 @@ const Signup = () => {
         <div className="bg-gray-200 p-4 text-left rounded-md">
           <form onSubmit={signupHandler}>
             <div>
-              <label htmlFor="name" labelText="Name" id="name-input-title" />
+              <Label htmlFor="name" LabelText="Name" id="name-input-title" />
               <Input
                 value={name}
                 id="name"
@@ -29,7 +29,7 @@ const Signup = () => {
               />
             </div>
             <div>
-            <label htmlFor="username" labelText="Username" id="username-input-title" />
+            <Label htmlFor="username" LabelText="Username" id="username-input-title" />
               <Input
                 value={username}
                 id="username"
@@ -39,11 +39,11 @@ const Signup = () => {
               /> 
             </div>
             <div>
-              <label htmlFor="password" id="password-input-title" labelText="Password" />
+              <Label htmlFor="password" id="password-input-title" LabelText="Password" />
               <Input id="password" value={password} placeholder="Password" ariaLabelledBy="password-input-title" callback={setPassword} />
             </div>
             <div>
-            <label htmlFor="confirmPassword" id="confirmPassword-input-title" labelText="Confirm Password" />
+            <Label htmlFor="confirmPassword" id="confirmPassword-input-title" LabelText="Confirm Password" />
               <Input id="confirmPassword" value={confirmPassword} placeholder="Password" ariaLabelledBy="password-input-title" callback={setConfirmPassword} />
             </div>
             <button type="submit">Signup</button>
