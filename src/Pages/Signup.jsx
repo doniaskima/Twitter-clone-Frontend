@@ -1,10 +1,47 @@
 import {useAuth} from "../Context/authProvider";
-import {Input , Label} from "../Components/FormComponents";
-import {useState} from "react";
+import {Input , Label} from "../components/FormComponents";
+import { useState } from "react";
+ 
 
 const Signup = () => {
+  const { signupUserWithCredentials } = useAuth();
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const signupHandler = async (event) => {
+    event.preventDefault();
+  }
   return (
-    <div>Signup</div>
+    <div className="h-screen flex justfy-center">
+      <div className="text-center mt-40">
+        <h1 className="text-5xl font-semibold">Twitter Clone</h1>
+        <div className="bg-gray-200 p-4 text-left rounded-md">
+          <form onSubmit={signupHandler}>
+            <div>
+              <label htmlFor="name" labelText="Name" id="name-input-title" />
+              <Input
+                value={name}
+                id="name"
+                placeholder="Name"
+                ariaLabelledBy="name-input-title"
+                callback={setName}
+              />
+            </div>
+            <div>
+            <label htmlFor="username" labelText="Username" id="username-input-title" />
+              <Input
+                value={username}
+                id="username"
+                placeholder="Username"
+                ariaLabelledBy="username-input-title"
+                callback={setUsername}
+              /> 
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   )
 }
 
