@@ -1,11 +1,12 @@
-import {useAuth} from "../Context/authProvider";
+import { useAuth } from "../Context/authProvider";
 import {Input , Label} from "../components/FormComponents";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
  
 
 const Signup = () => {
-  const navigate = useNavigate();
+
+ 
   const { signupUserWithCredentials, validateEmail } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -48,12 +49,6 @@ const Signup = () => {
       email,
       password
     );
-    setLoading(false);
-    if (success) {
-      navigate("home");
-      return;
-    }
-    setError(message);
   };
  
 

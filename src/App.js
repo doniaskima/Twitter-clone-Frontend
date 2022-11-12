@@ -6,9 +6,11 @@ import Signup from "./Pages/Signup";
 function App() {
   return (
     <div className="App h-screen">
-       <Signup path="/" />
+       <Login path="/" />
+        <Signup path="signup" />
     </div>
   );
 }
+
 
 export default App;
