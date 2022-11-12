@@ -64,7 +64,7 @@ const Signup = () => {
   return (
     <div className="h-screen flex justify-center back">
       <div className="text-center mt-14">
-        <h1 className="text-5xl font-semibold mb-4">Nova Socials</h1>
+        <h1 className="text-5xl font-semibold mb-4">Twitter clone</h1>
         {error !== "" && (
           <p className="text-red-600 font-medium max-w-sm">{error}</p>
         )}
