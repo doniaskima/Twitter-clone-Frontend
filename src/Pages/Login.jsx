@@ -5,19 +5,18 @@ import {useAuth} from "../Context/authProvider";
 import { Input, Label } from "../components/FormComponents";
 
 const Login = () => {
+  const navigate =useNavigate()
   const { loginUserWithCredentials, validateEmail } = useAuth();
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
 
   const loginHandler = async (event) => {
     event.preventDefault();
     setError("");
     setLoading(true);
-    console.log(validateEmail(email));
     if (validateEmail(email)) {
       const { message, success } = await loginUserWithCredentials(
         email,
@@ -25,6 +24,7 @@ const Login = () => {
       );
       if (success) {
         setLoading(false);
+        navigate("home");
         return;
       }
       setLoading(false);
@@ -34,11 +34,10 @@ const Login = () => {
     setError("Invalid Email");
     setLoading(false);
   };
-
   return (
     <div className="h-screen flex justify-center">
       <div className="text-center mt-40">
-        <h1 className="text-5xl font-semibold mb-4">Twitter clone</h1>
+        <h1 className="text-5xl font-semibold mb-4">Nova Socials</h1>
         <p className="text-red-600 font-medium">{error}</p>
         <div className="text-left shadow-lg w-96 p-4 bg-gray-200 rounded-md mt-2">
           <form onSubmit={loginHandler}>
@@ -94,7 +93,7 @@ const Login = () => {
             </div>
           </form>
           <div className="text-center mt-4">
-          <p className="font-normal">
+            <p className="font-normal">
               Dont have an account? <Link to="signup">Sign Up!</Link>
             </p>
           </div>
@@ -102,6 +101,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;
