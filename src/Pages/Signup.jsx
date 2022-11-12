@@ -1,17 +1,62 @@
 import {useAuth} from "../Context/authProvider";
 import {Input , Label} from "../components/FormComponents";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
  
 
 const Signup = () => {
-  const { signupUserWithCredentials } = useAuth();
+  const navigate = useNavigate();
+  const { signupUserWithCredentials, validateEmail } = useAuth();
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const matchPassword = confirmPassword === password ;
+  const isPasswordValid = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(
+    password
+  );
+
   const signupHandler = async (event) => {
     event.preventDefault();
-  }
+    setError("");
+    if (
+      name === "" || username === "" || email === "" || password === "" || confirmPassword === ""
+    ) {
+      setError("All fields are required!");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email");
+      return;
+    }
+    if (!isPasswordValid) {
+      setError("Password must be 8 characters long , have one upper and lower case character and one number");
+      return;
+    }
+    if (!matchPassword) {
+      setError("Both passwords must be same");
+      return;
+    }
+    setLoading(true);
+    const { message, success } = await signupUserWithCredentials(
+      username,
+      name,
+      email,
+      password
+    );
+    setLoading(false);
+    if (success) {
+      navigate("home");
+      return;
+    }
+    setError(message);
+  };
+ 
+
   return (
     <div className="h-screen flex justify-center">
       <div className="text-center mt-40">
