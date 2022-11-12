@@ -15,7 +15,7 @@ const Signup = () => {
   return (
     <div className="h-screen flex justify-center">
       <div className="text-center mt-40">
-        <h1 className="text-5xl font-semibold">Twitter Clone</h1>
+        <h1 className="text-5xl font-semibold mb-4">Twitter Clone</h1>
         <div className="bg-gray-200 p-4 text-left rounded-md">
           <form onSubmit={signupHandler}>
             <div>
@@ -30,7 +30,7 @@ const Signup = () => {
             </div>
             <div>
             <Label htmlFor="username" LabelText="Username" id="username-input-title" />
-              <Input
+            <Input
                 value={username}
                 id="username"
                 placeholder="Username"
@@ -44,7 +44,7 @@ const Signup = () => {
             </div>
             <div>
             <Label htmlFor="confirmPassword" id="confirmPassword-input-title" LabelText="Confirm Password" />
-              <Input id="confirmPassword" value={confirmPassword} placeholder="Password" ariaLabelledBy="password-input-title" callback={setConfirmPassword} />
+            <Input id="confirmPassword" value={confirmPassword} placeholder="Password" ariaLabelledBy="password-input-title" callback={setConfirmPassword} />
             </div>
             <button type="submit">Signup</button>
           </form>
