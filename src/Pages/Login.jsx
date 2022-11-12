@@ -1,7 +1,7 @@
 import {useState} from 'react'
-import {  useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import {useAuth} from "../Context/authProvider";
-import { Link } from "react-router-dom";
+ 
 import { Input, Label } from "../components/FormComponents";
 
 const Login = () => {
@@ -94,8 +94,8 @@ const Login = () => {
             </div>
           </form>
           <div className="text-center mt-4">
-            <p className="font-normal">
-              Dont have an account? 
+          <p className="font-normal">
+              Dont have an account? <Link to="signup">Sign Up!</Link>
             </p>
           </div>
         </div>

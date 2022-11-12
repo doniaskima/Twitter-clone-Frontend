@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
 
- 
   const { signupUserWithCredentials, validateEmail } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -79,14 +78,29 @@ const Signup = () => {
               /> 
             </div>
             <div>
-              <Label htmlFor="password" id="password-input-title" LabelText="Password" />
-              <Input id="password" value={password} placeholder="Password" ariaLabelledBy="password-input-title" callback={setPassword} />
+              <Label
+                htmlFor="password"
+                id="password-input-title"
+                LabelText="Password"
+                
+              />
+              <Input id="password"
+                value={password}
+                placeholder="Password"
+                ariaLabelledBy="password-input-title"
+                callback={setPassword} 
+                
+              />
             </div>
             <div>
             <Label htmlFor="confirmPassword" id="confirmPassword-input-title" LabelText="Confirm Password" />
             <Input id="confirmPassword" value={confirmPassword} placeholder="Password" ariaLabelledBy="password-input-title" callback={setConfirmPassword} />
             </div>
-            <button type="submit">Signup</button>
+            <div className="flex justify-center">
+              <button type="submit">
+                Signup
+              </button>
+           </div>
           </form>
         </div>
       </div>

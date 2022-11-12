@@ -6,8 +6,10 @@ import Signup from "./Pages/Signup";
 function App() {
   return (
     <div className="App h-screen">
-       <Login path="/" />
+      <Router>
+        <Login path="/" />
         <Signup path="signup" />
+      </Router>
     </div>
   );
 }
