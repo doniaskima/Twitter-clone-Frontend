@@ -76,3 +76,18 @@ export const unlikePost = createAsyncThunk(
           }
     }
 )
+
+export const createPost = createAsyncThunk(
+    "post/createPost",
+    async (body, thunkAPI) => {
+      try {
+        const { data } = await axios.post(`${BASE_URL}/posts/new`, body);
+        if (data.success) {
+          return data;
+        }
+        return thunkAPI.rejectWithValue({ errorMessage: data.message });
+      } catch (error) {
+        return thunkAPI.rejectWithValue({ errorMessage: error.message });
+      }
+    }
+  );
