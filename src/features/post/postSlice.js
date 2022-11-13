@@ -166,3 +166,51 @@ export const fetchPostComments = createAsyncThunk(
     }
 
 )
+
+const postSlice = createSlice({
+    name: "post",
+    initialState: {
+        feed: [],
+        userPosts: [],
+        likes: [],
+        comments: [],
+        loading: false,
+        errMessage:null,
+    },
+    reducers: {},
+    extraReducers: {
+        [fetchUserFeed.fulfilled]: (state, action) => {
+            state.feed = action.payload.feed;
+            state.loading = false;
+        },
+        [fetchUserFeed.rejected]: (state, action) => {
+            state.loading = false;
+            state.errMessage = action.payload.errMessage;
+        },
+        [fetchUserFeed.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchUserPosts.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchUserPosts.rejected]: (state, action) => {
+            state.loading = false;
+            state.errMessage = action.payload.errorMessage;
+        },
+        [fetchUserPosts.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.userPosts = action.payload.posts;
+        },
+        [createPost.pending]: (state) => {
+            state.loading = true;
+        },
+        [createPost.rejected]: (state, action) => {
+            state.loading = false;
+            state.errMessage = action.payload.errorMessage;
+        },
+        [createPost.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.errMessage = "";
+        }
+    }
+})
