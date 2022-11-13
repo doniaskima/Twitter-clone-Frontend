@@ -34,6 +34,8 @@ const notificationSlice = createSlice({
     },
     
     reducers: {
-        
-    }
+        addNewNotification: (state, action) => {
+            state.notifications.unshift(action.payload);
+        },
+    },
 })
