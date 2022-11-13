@@ -211,6 +211,40 @@ const postSlice = createSlice({
         [createPost.fulfilled]: (state, action) => {
             state.loading = false;
             state.errMessage = "";
+            state.userPosts.unshift(action.payload.post);
+            state.feed.unshift(action.payload.post);
+        },
+        [likePost.pending]: (state) => {
+            state.loading = true;
+        },
+        [likePost.rejected]: (state, action) => {
+            state.loading = true;
+        },
+        [likePost.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage=action.payload.errorMessage;
+        },
+
+        [likePost.fulfilled]: (state,action) => {
+            state.errorMessage = "";
+            const index = state.feed.findIndex(
+                (post) => post._id === action.payload.postId
+            );
+
+            state.feed[index].likes.unshift(action.payload.likedBy.id);
+            state.loading = false;
+        },
+
+        [commentPost.pending]: (state) => {
+            state.loading = true;
         }
     }
 })
+
+
+
+
+
+
+
+export default postSlice.reducer;
