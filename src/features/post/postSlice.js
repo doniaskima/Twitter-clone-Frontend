@@ -22,3 +22,23 @@ export const fetchUserFeed = createAsyncThunk(
         }
     }
 );
+
+
+export const fetchUserPosts = createAsyncThunk(
+    "post/createPost",
+    async ({userId}, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`{BaseUrl}/users/get-user-posts/${userId}`);
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({
+                errorMessage: data.message
+            });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            });
+        }
+    }
+)
