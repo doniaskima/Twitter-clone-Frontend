@@ -272,6 +272,12 @@ const postSlice = createSlice({
             state.loading = false;
             state.errorMessage = action.payload.errorMessage;
         },
+        [deletePost.fulfilled]: (state, action) => {
+            state.errorMessage = "";
+            const index = state.feed.findIndex((post) => post._id === action.payload.postId);
+            state.feed.splice(index, 1);
+            state.state.loading = false;
+        }
     }
 })
 
