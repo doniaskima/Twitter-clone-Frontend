@@ -42,3 +42,37 @@ export const fetchUserPosts = createAsyncThunk(
         }
     }
 )
+
+export const likePost = createAsyncThunk(
+    "post/like",
+    async (body, thunkAPI) => {
+        try {
+            const { data } = await axios.post(`{BaseUrl}/post/like`);
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({
+                errorMessage:data.message
+            })
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage:error.message
+            })
+        }
+    }
+)
+
+export const unlikePost = createAsyncThunk(
+    "post/unlike",
+    async (body, thunkAPI) => {
+        try {
+            const { data } = await axios.post(`${BaseUrl}/posts/unlike`, body);
+            if (data.success) {
+              return data;
+            }
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
+          } catch (error) {
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
+          }
+    }
+)
