@@ -81,7 +81,7 @@ export const createPost = createAsyncThunk(
     "post/createPost",
     async (body, thunkAPI) => {
       try {
-        const { data } = await axios.post(`${BASE_URL}/posts/new`, body);
+        const { data } = await axios.post(`${BaseUrl}/posts/new`, body);
         if (data.success) {
           return data;
         }
@@ -90,4 +90,26 @@ export const createPost = createAsyncThunk(
         return thunkAPI.rejectWithValue({ errorMessage: error.message });
       }
     }
-  );
+);
+  
+
+
+export const commentPost = createAsyncThunk(
+    "post/commentPost",
+    async (body, thunkAPI) => {
+        try {
+            const { data } = await axios.post(`{BaseUrl}/posts/comment`, body);
+        if (data.success) {
+            return data;
+        }
+        return thunkAPI.rejectWithValue({
+            errorMessage:data.message
+        })
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            });
+        }
+         
+    }
+)
