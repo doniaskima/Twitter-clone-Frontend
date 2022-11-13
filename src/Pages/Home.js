@@ -12,12 +12,27 @@ const Home = () => {
                           <img src={Logo} className="w-40" />
                       </div>
                       <div className="mt-2 mb-4">
-                          <nav aria-label="Primary" role="navigation">
-                          <Link to="" aria-label="Home" role="link">
+                        <nav aria-label="Primary" role="navigation">
+                        <Link to="" aria-label="Home" role="link">
                           <div className="p-3 rounded-full hover:bg-gray-200">Home</div>
-                          </Link>
-                          </nav>
+                        </Link>
+                        <Link to="" aria-label="Notifications" role="link">
+                          <div className="p-3 rounded-full hover:bg-gray-200">Notifications</div>
+                        </Link>
+                        <Link to="" aria-label="Messages" role="link">
+                          <div className="p-3 rounded-full hover:bg-gray-200">Messages</div>
+                        </Link>
+                        <Link to="" aria-label="Profile" role="link">
+                          <div className="p-3 rounded-full hover:bg-gray-200">Profile</div>
+                              </Link>
+                        <Link to="" aria-label="Bookmark" role="link">
+                          <div className="p-3 rounded-full hover:bg-gray-200">Bookmark</div>
+                        </Link>      
+                        </nav>
                       </div>
+                      <button className="py-2 px-3 bg-blue-500 rounded-full ring-2 text-white">
+                          Tweet
+                      </button>
                   </div>
              </div>    
           </div>
