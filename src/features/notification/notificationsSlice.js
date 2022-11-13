@@ -38,4 +38,24 @@ const notificationSlice = createSlice({
             state.notifications.unshift(action.payload);
         },
     },
+
+    extraReducers: {
+        [fetchNotifications.pending]: (state) => {
+            state.loading = true;
+        },
+
+        [fetchNotifications.rejected]: (state, action) => {
+            state.loading = false;
+            state.errMessage = action.payload.errorMessage;
+        },
+        [fetchNotifications.fulfilled]: (state, action) => {
+            state.errMessage = "";
+            state.notifications = action.payload.notifications;
+            state.loading = false;
+        }
+    }
 })
+
+export const { addNewNotification } = notificationSlice.actions;
+
+export default notificationSlice.reducer;
