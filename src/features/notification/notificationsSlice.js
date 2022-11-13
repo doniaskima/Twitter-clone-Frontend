@@ -6,7 +6,7 @@ import { BaseUrl } from "../../utils/BaseUrl";
 export const fetchNotifications = createAsyncThunk(
 
     "notification/fetchNotifications",
-    async ({ userId, thunkAPI }) => {
+    async ({ userId }, thunkAPI) => {
         try {
             const { data } = await axios.get(`${BaseUrl}/users/notifications/${userId}`);
             if (data.success) {
@@ -23,3 +23,17 @@ export const fetchNotifications = createAsyncThunk(
     }
 
 )
+
+
+const notificationSlice = createSlice({
+    name: "notification",
+    initialState: {
+        notifications: [],
+        loading: false,
+        errMessage: null,
+    },
+    
+    reducers: {
+        
+    }
+})
