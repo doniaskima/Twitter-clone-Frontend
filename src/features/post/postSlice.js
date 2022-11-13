@@ -237,7 +237,41 @@ const postSlice = createSlice({
 
         [commentPost.pending]: (state) => {
             state.loading = true;
-        }
+        },
+
+        [commentPost.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
+
+        [commentPost.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.errMessage = "";
+            state.comments.unshift(action.payload.likedBy);
+        },
+        [unlikePost.pending]: (state) => {
+            state.loading = true;
+        },
+        [unlikePost.rejected]: (state , action) => {
+            state.loading = false;
+            state.errMessage = action.payload.errorMessage;
+        },
+        [unlikePost.fulfilled]: (state, action) => {
+            state.errorMessage = "";
+            const index = state.feed.findIndex((post) => post._id === action.payload.postId);
+            const indexOfId = state.feed[index].likes.indexOf(
+                action.payload.unlikeBy
+            );
+            state.feed[index].likes.splice(indexOfId, 1);
+            state.loading = false;
+        },
+        [deletePost.pending]: (state) => {
+            state.loading = true;
+        },
+        [deletePost.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
     }
 })
 
