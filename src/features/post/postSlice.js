@@ -119,7 +119,7 @@ export const deletePost = createAsyncThunk(
     "post/deletePost",
     async ({ postId }, thunkAPI) => {
       try {
-        const { data } = await axios.delete(`${BASE_URL}/posts/${postId}`);
+        const { data } = await axios.delete(`${BaseUrl}/posts/${postId}`);
         if (data.success) {
           return data;
         }
@@ -128,4 +128,41 @@ export const deletePost = createAsyncThunk(
         return thunkAPI.rejectWithValue({ errorMessage: error.message });
       }
     }
-  );
+);
+  
+export const fetchPostLikes = createAsyncThunk(
+    "post/fetchPostLikes",
+    async ({ postId }, thunkAPI) => {
+      try {
+        const { data } = await axios.get(`${BaseUrl}/post/likes/${postId}`);
+        if (data.success) {
+          return data;
+        }
+        return thunkAPI.rejectWithValue({ errorMessage: data.message });
+      } catch (error) {
+        return thunkAPI.rejectWithValue({ errorMessage: error.message });
+      }
+    }
+)
+
+
+export const fetchPostComments = createAsyncThunk(
+    "post/fetchPostComments",
+    async ({ postId }, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`{BaseUrl}/post/comments/${postId}`);
+            if (data.success) {
+                return data;
+            }
+
+            return thunkAPI.rejectWithValue({
+                errorMessage:data.message
+            })
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage:error.message
+            })
+        }
+    }
+
+)
