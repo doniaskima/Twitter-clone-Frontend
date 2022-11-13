@@ -113,3 +113,19 @@ export const commentPost = createAsyncThunk(
          
     }
 )
+
+
+export const deletePost = createAsyncThunk(
+    "post/deletePost",
+    async ({ postId }, thunkAPI) => {
+      try {
+        const { data } = await axios.delete(`${BASE_URL}/posts/${postId}`);
+        if (data.success) {
+          return data;
+        }
+        return thunkAPI.rejectWithValue({ errorMessage: data.message });
+      } catch (error) {
+        return thunkAPI.rejectWithValue({ errorMessage: error.message });
+      }
+    }
+  );
