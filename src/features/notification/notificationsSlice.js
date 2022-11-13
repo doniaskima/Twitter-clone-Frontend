@@ -21,7 +21,6 @@ export const fetchNotifications = createAsyncThunk(
             });
         }
     }
-
 )
 
 
