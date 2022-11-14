@@ -133,7 +133,27 @@ export const followUser = createAsyncThunk(
 );
 
 const userSlice = createSlice({
-    
+    name: "user",
+    initialState: {
+        data: {
+            _id: null,
+            name: null,
+            username: null,
+            email: null,
+            bio: null,
+            profileUrl: null,
+            followers: [],
+            following: [],          
+        },
+        token: null,
+        isUserLoggedIn: false,
+        loading: false,
+        errorMessage: "",
+        initialLoading:true,
+    },
+    reducers: {
+        
+    }
 })
 
 export default userSlice.reducer;
