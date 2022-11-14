@@ -152,7 +152,22 @@ const userSlice = createSlice({
         initialLoading:true,
     },
     reducers: {
-        
+        logoutUser: (state) => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            state.data = {
+                _id: null,
+                name: null,
+                username: null,
+                email: null,
+                profileUrl: null,
+                
+            };
+            state.token = null;
+            state.isUserLoggedIn = false;
+            state.loading = false;
+            state.errorMessage = "";
+        }
     }
 })
 
