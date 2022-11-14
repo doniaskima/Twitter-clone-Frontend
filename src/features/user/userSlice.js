@@ -50,4 +50,69 @@ export const signupUserAsync = createAsyncThunk(
 )
 
 
+export const fetchUserFollowers = createAsyncThunk(
+    "user/fetchUserFollowers",
+    async ({ userId }, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`${BaseUrl}/users/followers/${userId}`);
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({
+                errorMessage: data.message
+            });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            })
+        }
+    }
+)
+
+export const fetchUserFollowing = createAsyncThunk(
+    "user/fetchUserFollowing",
+    async ({ userId }, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`${BaseUrl}/users/following/${userId}`);
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({
+                errorMessage: data.message
+            })
+        } catch (error) {
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
+        }
+    }
+)
+
+
+export const fetchUserInfo = createAsyncThunk(
+    "user/fetchUserInfo",
+    async ({ userId }, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`${BaseUrl}/users/${userId}`);
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({
+                errorMessage: data.message
+            });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            });
+        }
+    }
+)
+
+export const followUser = createAsyncThunk(
+    "user/followUser",
+    async ({ targetId }, thunkAPI) => {
+        try {
+            
+        }
+    }
+)
+
 export default userSlice.reducer;
