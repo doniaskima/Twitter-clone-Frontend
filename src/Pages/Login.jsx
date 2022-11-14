@@ -1,38 +1,30 @@
 import {useState} from 'react'
-import { useNavigate , Link } from "react-router-dom";
-import {useAuth} from "../Context/authProvider";
- 
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Input, Label } from "../components/FormComponents";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUserAsync } from "../features/user/userSlice";
 
 const Login = () => {
-  const navigate =useNavigate()
-  const { loginUserWithCredentials, validateEmail } = useAuth();
+  const navigate =useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { loading, errorMessage, isUserLoggedIn } = useSelector((state) => state.user);
 
   const loginHandler = async (event) => {
     event.preventDefault();
-    setError("");
-    setLoading(true);
-    if (validateEmail(email)) {
-      const { message, success } = await loginUserWithCredentials(
-        email,
-        password
-      );
-      if (success) {
-        setLoading(false);
-        navigate("home");
-        return;
-      }
-      setLoading(false);
-      setError(message);
-      return;
+    const { meta } = await dispatch(
+      loginUserAsync({
+        email, password,
+      })
+    );
+    if (meta.requestStatus === "fulfilled") {
+      navigate("home");
     }
-    setError("Invalid Email");
-    setLoading(false);
+
   };
   return (
     <div className="h-screen flex justify-center">

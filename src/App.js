@@ -10,10 +10,10 @@ function App() {
   return (
     <div className="App h-screen">
       <Router>
-        {/* <Login path="/" />
+        <Login path="/" />
         <Signup path="signup" />
-        <PrivateRoute component={Home} path="home" /> */}
-        <Home/>
+        {/* <PrivateRoute component={Home} path="home" /> */}
+        {/* <Home/> */}
       </Router>
     </div>
   );
