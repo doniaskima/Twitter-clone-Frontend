@@ -161,7 +161,8 @@ const userSlice = createSlice({
                 username: null,
                 email: null,
                 profileUrl: null,
-                
+                followers: [],
+                following: [],
             };
             state.token = null;
             state.isUserLoggedIn = false;
