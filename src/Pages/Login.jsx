@@ -27,10 +27,14 @@ const Login = () => {
 
   };
   return (
+    <> 
+  {isUserLoggedIn && <Navigate to="home" replace />}
     <div className="h-screen flex justify-center">
       <div className="text-center mt-40">
         <h1 className="text-5xl font-semibold mb-4"> Twitter clone</h1>
-        <p className="text-red-600 font-medium">{error}</p>
+        {errorMessage !== "" && (
+            <p className="text-red-600 font-medium max-w-sm">{errorMessage}</p>
+          )}
         <div className="text-left shadow-lg w-96 p-4 bg-gray-200 rounded-md mt-2">
           <form onSubmit={loginHandler}>
             <div className="">
@@ -62,15 +66,15 @@ const Login = () => {
                   aria-labelledby="password-input-title"
                 />
                 {showPassword ? (
-                  <i
-                    className="fa fa-eye-slash cursor-pointer"
+                    <AiOutlineEyeInvisible
                     onClick={() => setShowPassword(false)}
-                  ></i>
-                ) : (
-                  <i
-                    className="fa fa-eye cursor-pointer"
-                    onClick={() => setShowPassword(true)}
-                  ></i>
+                    className="text-2xl cursor-pointer"
+                    />
+                  ) : (
+                    <AiOutlineEye
+                      onClick={() => setShowPassword(true)}
+                      className="text-2xl cursor-pointer"
+                    />
                 )}
               </div>
             </div>
@@ -86,12 +90,13 @@ const Login = () => {
           </form>
           <div className="text-center mt-4">
             <p className="font-normal">
-              Dont have an account? <Link to="signup">Sign Up!</Link>
+              Dont have an account?{" "}<Link to="signup">Sign Up!</Link>
             </p>
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
