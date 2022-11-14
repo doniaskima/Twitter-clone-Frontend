@@ -25,3 +25,6 @@ export const loginUserAsync = createAsyncThunk(
         }
     }
 );
+
+
+export default userSlice.reducer;
