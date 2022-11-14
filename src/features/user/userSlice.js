@@ -183,12 +183,14 @@ const userSlice = createSlice({
             }
             state.initialLoading = false;
         },
-        
 
-    }
+        setInitialLoadingFalse: (state) => {
+            state.initialLoading = false;
+        },
+    },
 })
 
 
 
-export const { logoutUser } = useSlice.actions;
+export const { logoutUser,setUserFromLocalStorage, setInitialLoadingFalse } = useSlice.actions;
 export default userSlice.reducer;
