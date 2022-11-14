@@ -188,6 +188,34 @@ const userSlice = createSlice({
             state.initialLoading = false;
         },
     },
+    extraReducers:{
+        [loginUserAsync.pending]: (state) => {
+            state.loading = true;
+        },
+        [loginUserAsync.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.isUserLoggedIn = true;
+            state.errorMessage = "";
+            state.data = action.payload.user;
+        },
+        [loginUserAsync.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
+        [signupUserAsync.pending]: (state) => {
+            state.loading = true;
+        },
+        [signupUserAsync.fulfilled]: (state, action) => {
+            action.loading = false;
+            state.isUserLoggedIn = true;
+            state.errorMessage = "";
+            state.data = action.payload.user;
+        },
+        [signupUserAsync.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
+    }
 })
 
 
