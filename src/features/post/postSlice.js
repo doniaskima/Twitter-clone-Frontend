@@ -23,7 +23,6 @@ export const fetchUserFeed = createAsyncThunk(
     }
 );
 
-
 export const fetchUserPosts = createAsyncThunk(
     "post/createPost",
     async ({userId}, thunkAPI) => {
@@ -277,14 +276,33 @@ const postSlice = createSlice({
             const index = state.feed.findIndex((post) => post._id === action.payload.postId);
             state.feed.splice(index, 1);
             state.state.loading = false;
+        },
+        [fetchPostLikes.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchPostLikes.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+
+        },
+        [fetchPostLikes.fulfilled]: (state, action) => {
+            state.errorMessage = "";
+            state.likes = action.payload.likes;
+            state.loading = false;
+        },
+        [fetchPostComments.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchPostComments.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
+        [fetchPostComments.fulfilled]: (state, action) => {
+            state.errorMessage = "";
+            state.comments = action.payload.comments;
+            state.loading = false;
         }
     }
 })
-
-
-
-
-
-
 
 export default postSlice.reducer;
