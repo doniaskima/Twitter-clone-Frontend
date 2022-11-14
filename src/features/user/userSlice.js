@@ -143,13 +143,13 @@ const userSlice = createSlice({
             bio: null,
             profileUrl: null,
             followers: [],
-            following: [],          
+            following: [],
         },
         token: null,
         isUserLoggedIn: false,
         loading: false,
         errorMessage: "",
-        initialLoading:true,
+        initialLoading: true,
     },
     reducers: {
         logoutUser: (state) => {
@@ -172,8 +172,8 @@ const userSlice = createSlice({
         setUserFromLocalStorage: (state) => {
             let user;
             const jsonUser = localStorage.getItem("user");
-            if(jsonUser){
-                user=JSON.parse(jsonUser);
+            if (jsonUser) {
+                user = JSON.parse(jsonUser);
             }
             const token = localStorage.getItem("token");
             if (user !== undefined && token !== null) {
@@ -188,7 +188,7 @@ const userSlice = createSlice({
             state.initialLoading = false;
         },
     },
-    extraReducers:{
+    extraReducers: {
         [loginUserAsync.pending]: (state) => {
             state.loading = true;
         },
@@ -232,17 +232,27 @@ const userSlice = createSlice({
         },
         [fetchUserFollowing.rejected]: (state, action) => {
             state.loading = false;
-      state.errorMessage = action.payload.errorMessage;
+            state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserFollowing.fulfilled]: (state, action) => {
             state.loading = false;
             state.errorMessage = "";
-            state.data.following=action.payload.following;
-        }
-    }
-})
-
-
+            state.data.following = action.payload.following;
+        },
+        [fetchUserInfo.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchUserInfo.rejected]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
+        [fetchUserInfo.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.errorMessage = "";
+            state.data.following.push(action.payload.targetUserId);
+        },
+    },
+});
 
 export const { logoutUser,setUserFromLocalStorage, setInitialLoadingFalse } = useSlice.actions;
 export default userSlice.reducer;
