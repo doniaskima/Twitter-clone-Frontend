@@ -168,8 +168,27 @@ const userSlice = createSlice({
             state.isUserLoggedIn = false;
             state.loading = false;
             state.errorMessage = "";
-        }
+        },
+        setUserFromLocalStorage: (state) => {
+            let user;
+            const jsonUser = localStorage.getItem("user");
+            if(jsonUser){
+                user=JSON.parse(jsonUser);
+            }
+            const token = localStorage.getItem("token");
+            if (user !== undefined && token !== null) {
+                state.isUserLoggedIn = true;
+                state.data = user;
+                state.token = token;
+            }
+            state.initialLoading = false;
+        },
+        
+
     }
 })
 
+
+
+export const { logoutUser } = useSlice.actions;
 export default userSlice.reducer;
