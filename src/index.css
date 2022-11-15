@@ -12,3 +12,7 @@ body {
     --toastify-toast-max-height: 40px;
     --toastify-text-color-light: #fff;
 }
+
+i {
+    cursor: pointer;
+}
