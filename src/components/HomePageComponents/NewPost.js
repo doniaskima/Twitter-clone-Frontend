@@ -16,9 +16,37 @@ const NewPost = () => {
         setContent("");
         dispatch(createPost({ author: user._id, content: content }));
     }
-    
+
   return (
-    <div>NewPost</div>
+      <div className="py-2 px-2 border">
+          <form onSubmit={submitHandler}>
+              <div className="flex">
+                  <div className="w-12 h-10 mr-3 rounded-full bg-gray-400">
+                      <div className="w-full">
+                          <textarea value={content} onFocus={() => setShowContentLengthChip(true)} onChange={(e) => setContent(e.target.value)}
+                            className="p-2 focus:outline-none rounded-sm resize:none"
+                            placeholder="What's Happening?"
+                            name="content"
+                            id="content-input-field"
+                            aria-label="Post content"
+                          ></textarea>
+                          <div>
+                              {showContentLengthChip && (
+                                  <span className="bg-blue-400 rounded-full py-1 px-2 text-white">
+                                      <span style={color}>{content.length}</span>
+                                      {" / 350"}
+                                  </span>
+                              )}
+                          </div>
+                          <button type="submit" className="button" disabled={disableBtn}>
+                              Tweet
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          
+          </form>
+      </div>
   )
 }
 
