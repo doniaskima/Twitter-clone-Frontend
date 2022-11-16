@@ -7,10 +7,6 @@ body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    --toastify-color-light: #60a5fa;
-    --toastify-toast-width: 180px;
-    --toastify-toast-max-height: 40px;
-    --toastify-text-color-light: #fff;
 }
 
 i {
@@ -18,7 +14,14 @@ i {
 }
 
 
-/* 
+/* .nav-element {
+    @apply p-3 text-lg rounded-full hover: bg-gray-200;
+}
+
+.nav-element-active {
+    @apply p-3 text-lg rounded-full bg-gray-200;
+}
+
 .button {
     @apply bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md;
 }
