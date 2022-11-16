@@ -1,6 +1,6 @@
 import { createPost } from "../../features/post/postSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState,useRef } from "react";
 
 
 const NewPost = () => {
@@ -10,6 +10,7 @@ const NewPost = () => {
     const [showContentLengthChip, setShowContentLengthChip] = useState(false);
     const color = content.length > 350 ? { color: "red" } : { color: "white" };
     const disableBtn = content === "" || content.length > 350;
+    const textareaRef = useRef(null);
 
     const submitHandler = (e) => {
         e.preventDefault(); 
@@ -23,8 +24,9 @@ const NewPost = () => {
               <div className="flex">
                   <div className="w-12 h-10 mr-3 rounded-full bg-gray-400">
                       <div className="w-full">
-                          <textarea value={content} onFocus={() => setShowContentLengthChip(true)} onChange={(e) => setContent(e.target.value)}
+                          <textarea value={content} ref={textareaRef} onFocus={() => setShowContentLengthChip(true)} onChange={(e) => setContent(e.target.value)}
                             className="p-2 focus:outline-none rounded-sm resize:none"
+                            style={{height:`${textareaRef?.current?.scrollHeight}px`}}
                             placeholder="What's Happening?"
                             name="content"
                             id="content-input-field"
