@@ -16,3 +16,13 @@ body {
 i {
     cursor: pointer;
 }
+
+
+/* 
+.button {
+    @apply bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md;
+}
+
+.small-button {
+    @apply ml-3 border-2 font-medium rounded-full px-2 py-1 hover: text-black hover: border-black;
+} */
