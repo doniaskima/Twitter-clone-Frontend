@@ -1,15 +1,22 @@
 import './App.css';
 import { useEffect } from "react";
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {
-  Home,
-  Login,
-  Notification,
-  Signup,
-  Profile,
-  Messages,
-  PostInfo,
-} from "./Pages/index";
+// import {
+//   Home,
+//   Login,
+//   Notification,
+//   Signup,
+//   Profile,
+//   Messages,
+//   PostInfo,
+// } from "./Pages/index";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import Notification from "./Pages/Notification";
+import PostInfo from "./Pages/PostInfo";
+import Messages from "./Pages/Messages";
+import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { setUserFromLocalStorage } from "./features/user/userSlice";
