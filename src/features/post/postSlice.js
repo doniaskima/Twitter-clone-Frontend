@@ -27,7 +27,7 @@ export const fetchUserPosts = createAsyncThunk(
     "post/createPost",
     async ({userId}, thunkAPI) => {
         try {
-            const { data } = await axios.get(`{BaseUrl}/users/get-user-posts/${userId}`);
+            const { data } = await axios.get(`${BaseUrl}/users/get-user-posts/${userId}`);
             if (data.success) {
                 return data;
             }
@@ -38,6 +38,42 @@ export const fetchUserPosts = createAsyncThunk(
             return thunkAPI.rejectWithValue({
                 errorMessage: error.message
             });
+        }
+    }
+)
+
+export const updatePost = createAsyncThunk(
+    "post/updatePost",
+    async(body,thunkAPI)=>{
+        try{
+            const { data } = await axios.post(`${BaseUrl}/posts/update-post`, body);
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({
+                errorMessage: data.message
+            });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            });
+        }
+    }
+)
+
+export const deleteComment = createAsyncThunk(
+    "post/deleteComment",
+    async ({ commentId }, thunkAPI) => {
+        try {
+            const { data } = await axios.delete(`{BaseUrl}/posts/comment/${commentId}`);
+            console.log(data);
+            if (data.success) {
+                return data;
+            }
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            })
         }
     }
 )
@@ -62,7 +98,7 @@ export const likePost = createAsyncThunk(
 )
 
 export const unlikePost = createAsyncThunk(
-    "post/unlike",
+    "post/unlikePost",
     async (body, thunkAPI) => {
         try {
             const { data } = await axios.post(`${BaseUrl}/posts/unlike`, body);
@@ -89,7 +125,7 @@ export const createPost = createAsyncThunk(
         return thunkAPI.rejectWithValue({ errorMessage: error.message });
       }
     }
-);
+  );
   
 
 
@@ -149,31 +185,42 @@ export const fetchPostComments = createAsyncThunk(
     "post/fetchPostComments",
     async ({ postId }, thunkAPI) => {
         try {
-            const { data } = await axios.get(`{BaseUrl}/post/comments/${postId}`);
+          const { data } = await axios.get(`${BaseUrl}/posts/comments/${postId}`);
+          if (data.success) {
+            return data;
+          }
+          return thunkAPI.rejectWithValue({ errorMessage: data.message });
+        } catch (error) {
+          return thunkAPI.rejectWithValue({ errorMessage: error.message });
+        }
+      }
+);
+
+export const fetchSinglePost = createAsyncThunk(
+    "post/fetchSinglePost",
+    async ({ postId }, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`{BaseUrl}/posts/${postId}`);
             if (data.success) {
                 return data;
             }
-
-            return thunkAPI.rejectWithValue({
-                errorMessage:data.message
-            })
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
         } catch (error) {
-            return thunkAPI.rejectWithValue({
-                errorMessage:error.message
-            })
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
         }
     }
-
 )
 
 const postSlice = createSlice({
     name: "post",
     initialState: {
         feed: [],
+        post:null,
         userPosts: [],
         likes: [],
         comments: [],
         loading: false,
+        commentsLoading: false,
         errMessage:null,
     },
     reducers: {},
@@ -184,7 +231,7 @@ const postSlice = createSlice({
         },
         [fetchUserFeed.rejected]: (state, action) => {
             state.loading = false;
-            state.errMessage = action.payload.errMessage;
+            state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserFeed.pending]: (state) => {
             state.loading = true;
@@ -194,7 +241,7 @@ const postSlice = createSlice({
         },
         [fetchUserPosts.rejected]: (state, action) => {
             state.loading = false;
-            state.errMessage = action.payload.errorMessage;
+            state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserPosts.fulfilled]: (state, action) => {
             state.loading = false;
@@ -205,7 +252,7 @@ const postSlice = createSlice({
         },
         [createPost.rejected]: (state, action) => {
             state.loading = false;
-            state.errMessage = action.payload.errorMessage;
+            state.errorMessage = action.payload.errorMessage;
         },
         [createPost.fulfilled]: (state, action) => {
             state.loading = false;
@@ -219,25 +266,20 @@ const postSlice = createSlice({
         },
         [likePost.rejected]: (state, action) => {
             state.loading = true;
+            state.errorMessage = action.payload.errorMessage;
         },
-        [likePost.rejected]: (state, action) => {
-            state.loading = false;
-            state.errorMessage=action.payload.errorMessage;
-        },
-
-        [likePost.fulfilled]: (state,action) => {
+        [likePost.fulfilled]: (state, action) => {
             state.errorMessage = "";
             const index = state.feed.findIndex(
-                (post) => post._id === action.payload.postId
+              (post) => post._id === action.payload.postId
             );
-
             state.feed[index].likes.unshift(action.payload.likedBy.id);
             state.loading = false;
-        },
+          },
 
-        [commentPost.pending]: (state) => {
-            state.loading = true;
-        },
+        // [commentPost.pending]: (state) => {
+        //     state.loading = true;
+        // },
 
         [commentPost.rejected]: (state, action) => {
             state.loading = false;
@@ -247,6 +289,7 @@ const postSlice = createSlice({
         [commentPost.fulfilled]: (state, action) => {
             state.loading = false;
             state.errMessage = "";
+            console.log(action.payload.comment);
             state.comments.unshift(action.payload.likedBy);
         },
         [unlikePost.pending]: (state) => {
@@ -302,8 +345,26 @@ const postSlice = createSlice({
             state.errorMessage = "";
             state.comments = action.payload.comments;
             state.loading = false;
-        }
-    }
+        },
+        [updatePost.pending]: (state) => {
+            state.loading = true;
+        },
+        [updatePost.rejected]: (state,action) => {
+            state.loading = false;
+            state.errMessage = action.payload.errorMessage;
+        },
+        [updatePost.fulfilled]: (state, action) => {
+            state.post.content = action.payload.post.content;
+            state.loading = false;
+            state.errMessage = "";
+        },
+        [deletePost.fulfilled]: (state, action) => {
+            const index = state.comments.findIndex(
+                (comment) => comment._id === action.payload.commentId
+            );
+            state.comments.splice(index, 1);
+        },
+    },
 })
 
 export default postSlice.reducer;
