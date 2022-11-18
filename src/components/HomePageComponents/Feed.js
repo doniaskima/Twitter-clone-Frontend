@@ -14,7 +14,7 @@ const Feed = () => {
         </div>
       ): (
           feed.map((post) => {
-            return <Post />
+              return <Post key={post._id} post={post} />;
           })
       )}
       {
