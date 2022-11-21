@@ -21,6 +21,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { setUserFromLocalStorage } from "./features/user/userSlice";
 
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,8 +31,9 @@ function App() {
   return (
     <div className="App h-screen">
        
-<Routes>
-         <Route path="/" element={<Login />} />
+      <Routes>   
+      <Route path="/" element={<Notification />} />
+          {/* <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
@@ -47,7 +49,7 @@ function App() {
         </Route>
         <Route path="/post/:postId" element={<PrivateRoute />}>
           <Route path="/post/:postId" element={<PostInfo />} />
-        </Route>  
+        </Route>    */}
       </Routes>
     </div>
   );
