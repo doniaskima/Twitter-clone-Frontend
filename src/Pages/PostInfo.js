@@ -1,15 +1,28 @@
 
-import React from 'react';
+import {useState} from 'react';
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { BiArrowBack } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/Spinner";
+import { NewComment, Comments, LikesModal } from "../components/PostInfoPageComponents/index";
+import { deletePost } from "../features/post/postSlice";
 
 export const PostInfo = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {postId} = useParams();
   const { post, loading, errMessage } = useSelector((state) => state.post);
   const likesCount = post?.likes?.length;
+  const commentCount = post?.comments?.length;
+  const user = useSelector((state) => state.user.data);
+  const [showModal, setShowModal] = useState(false);
+
+  const deleteHandler = () => {
+    dispatch(deletePost({postId:post._id}))
+  }
+
+
   return (
     <>
       <div className="flex h-screen bg-white z-10">
@@ -47,7 +60,10 @@ export const PostInfo = () => {
                         <button className="small-button mr-2">
                           Edit
                         </button>
-                        <button className="small-button">
+                        <button className="small-button"
+                          onClick={deleteHandler}
+                          className="small-button"
+                        >
                           Delete
                         </button>
                       </span>
@@ -60,16 +76,28 @@ export const PostInfo = () => {
                     {/* {createdAt ?? ""} */}
                     </div>
                   </div>
-                  <div>
-                    <span>
-                      {likesCount}
+                  <div className="border-t-2 border-b-2 border-gray-100 m-4 py-2 space-x-5">
+                    <span className="cursor-pointer font-semibold">
+                      {/* {likesCount} */}87
+                    </span>
+
+                    <span className="text-gray-400 font-normal">
+                      Likes
+                    </span>
+
+                    <span className="text-gray-400 font-normal">
+                        Comments
                     </span>
                   </div>
+                  <NewComment  />
+                  <Comments/>
                 </div>
+               
             )}
           </div>
         </div>
       </div>
+      {showModal && <LikesModal postId={postId} setShowModal={setShowModal} />}
     </>
   )
 }
