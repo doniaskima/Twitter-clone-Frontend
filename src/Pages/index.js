@@ -4,4 +4,4 @@ export { Home } from "./Home";
 // export { Notification } from "./Notification";
 // export { Profile } from "./Profile";
 // export { Messages } from "./Messages";
-// export { PostInfo } from "./PostInfo";
+export { PostInfo } from "./PostInfo";
