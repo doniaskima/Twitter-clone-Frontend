@@ -3,7 +3,8 @@ import React from 'react';
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../components/Spinner";
 
 export const PostInfo = () => {
   const navigate = useNavigate();
@@ -26,6 +27,16 @@ export const PostInfo = () => {
               <div className="text-center font-meduim">
                  {errMessage}
               </div>
+            )}
+
+            {loading ? (
+              <div className="flex justfiy-center">
+                <Spinner/>
+              </div>
+            ) : (
+                <div>
+
+                </div>
             )}
           </div>
         </div>
