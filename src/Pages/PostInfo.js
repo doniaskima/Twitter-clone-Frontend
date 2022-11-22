@@ -8,7 +8,8 @@ import Spinner from "../components/Spinner";
 
 export const PostInfo = () => {
   const navigate = useNavigate();
-  const {post,loading,errMessage}=useSelector((state)=>state.post)
+  const { post, loading, errMessage } = useSelector((state) => state.post);
+  const likesCount = post?.likes?.length;
   return (
     <>
       <div className="flex h-screen bg-white z-10">
@@ -34,8 +35,36 @@ export const PostInfo = () => {
                 <Spinner/>
               </div>
             ) : (
-                <div>
-
+                <div className="mt-10 w-full border">
+                  <div className="p-2">
+                    <div className="w-10 h-10 rounded-full bg-gray-200">
+                    </div>
+                    <div className="leading-liht">
+                      <span className="font-semibold">
+                           DoniaSkima
+                      </span>
+                      <span className="text-gray-400 text-sm float-right ">
+                        <button className="small-button mr-2">
+                          Edit
+                        </button>
+                        <button className="small-button">
+                          Delete
+                        </button>
+                      </span>
+                    </div>
+                    <span className="text-gray-400">
+                      “I think we’ve all been at a snapping point, where it felt like there’s no way out <br/>
+                      and that the entire world is just crumbling down around you. You start questioning everything, including yourself. I have been there. And what I realized was that I had the strength to shape my reality – it just took getting out of my own way and finding inner-peace.
+                    </span>
+                    <div className="text-sm text-gray-400">
+                    {/* {createdAt ?? ""} */}
+                    </div>
+                  </div>
+                  <div>
+                    <span>
+                      {likesCount}
+                    </span>
+                  </div>
                 </div>
             )}
           </div>
