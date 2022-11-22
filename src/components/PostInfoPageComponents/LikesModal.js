@@ -8,6 +8,9 @@ export const LikesModal = ({ postId, setShowModal }) => {
 
     const { likes, loadingLikes, errMessage } = useSelector((state) => state.state.post);
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchPostLikes({ postId }));
+    }, []);
 
   return (
       <div
@@ -22,23 +25,29 @@ export const LikesModal = ({ postId, setShowModal }) => {
                   <span className="text-xl font-medium">
                       Liked By
                   </span>
-                  <i>
-                      <GrClose/>
+                  <i className="ml-auto"
+                      role="button"
+                      aria-label="Close"
+                      aria-describedby="Button to close dialog"
+                  >
+                      <GrClose onClick={()=>setShowModal(false)} />
                   </i>
               </div>
               {errMessage && <div>{errMessage}</div>}  
               {loadingLikes ? (
-                  <div >
+                  <div className="flex justify-center mt-2">
                       <Spinner/>
                   </div>
               ) : (
                       likes.map((user) => {
                           return (
-                              <div className="flex border py-2 px-3 items-center">
+                              <div className="flex border py-2 px-3 items-center"
+                                  key={user._id}
+                              >
                                   <div className="bg-gray-300 w-10 h-10 rounded-full mr-2"></div>
                                   <div>
                                       <p>Donia</p>
-                                      <p>Skima</p>
+                                      <p className="text-gray-400">Skima</p>
                                   </div>
                               </div>
                           )

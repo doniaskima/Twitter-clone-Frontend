@@ -1,12 +1,17 @@
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate , useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/Spinner";
 import { NewComment, Comments, LikesModal } from "../components/PostInfoPageComponents/index";
-import { deletePost } from "../features/post/postSlice";
+import {
+  fetchSinglePost,
+  deletePost,
+  fetchPostComments, } from "../features/post/postSlice";
+import dayjs from "dayjs";
+
 
 export const PostInfo = () => {
   const navigate = useNavigate();
@@ -15,12 +20,20 @@ export const PostInfo = () => {
   const { post, loading, errMessage } = useSelector((state) => state.post);
   const likesCount = post?.likes?.length;
   const commentCount = post?.comments?.length;
+  const createdAt =
+  post !== null ? dayjs(post?.createdAt).format("h:mm A - MMM D, YYYY") : "";
   const user = useSelector((state) => state.user.data);
   const [showModal, setShowModal] = useState(false);
+  const [shoEditPost, setShowEditPost] = useState(false);
 
   const deleteHandler = () => {
     dispatch(deletePost({postId:post._id}))
   }
+
+  useEffect(() => {
+  dispatch(fetchSinglePost({ postId }));
+  dispatch(fetchPostComments({ postId }));
+}, []);
 
 
   return (
@@ -44,7 +57,7 @@ export const PostInfo = () => {
             )}
 
             {loading ? (
-              <div className="flex justfiy-center">
+              <div className="flex justify-center mt-16">
                 <Spinner/>
               </div>
             ) : (
@@ -57,7 +70,9 @@ export const PostInfo = () => {
                            DoniaSkima
                       </span>
                       <span className="text-gray-400 text-sm float-right ">
-                        <button className="small-button mr-2">
+                        <button className="small-button mr-2"
+                         onClick={()=>setShowEditPost(true)}
+                        >
                           Edit
                         </button>
                         <button className="small-button"
@@ -73,23 +88,29 @@ export const PostInfo = () => {
                       and that the entire world is just crumbling down around you. You start questioning everything, including yourself. I have been there. And what I realized was that I had the strength to shape my reality – it just took getting out of my own way and finding inner-peace.
                     </span>
                     <div className="text-sm text-gray-400">
-                    {/* {createdAt ?? ""} */}
+                    {createdAt ?? ""}
                     </div>
                   </div>
                   <div className="border-t-2 border-b-2 border-gray-100 m-4 py-2 space-x-5">
-                    <span className="cursor-pointer font-semibold">
-                      {/* {likesCount} */}87
+                    <span className="cursor-pointer font-semibold"
+                      onClick={(e) => {
+                        setShowModal(true);
+                    }}
+                    >
+                      {likesCount}
                     </span>
 
                     <span className="text-gray-400 font-normal">
-                      Likes
+                      {likesCount===1 ? "like" : "likes"}
                     </span>
-
-                    <span className="text-gray-400 font-normal">
-                        Comments
+                    <span className="font-semibold">
+                      {commentCount}
+                      <span className="text-gray-400 ml-1 font-normal">
+                      {commentCount === 1 ? "Comment" : "Comments"}
+                      </span>
                     </span>
                   </div>
-                  <NewComment  />
+                  <NewComment userId={user?._id} post={post?._id} />
                   <Comments/>
                 </div>
                
