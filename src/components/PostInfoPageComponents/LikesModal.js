@@ -46,8 +46,8 @@ export const LikesModal = ({ postId, setShowModal }) => {
                               >
                                   <div className="bg-gray-300 w-10 h-10 rounded-full mr-2"></div>
                                   <div>
-                                      <p>Donia</p>
-                                      <p className="text-gray-400">Skima</p>
+                                      <p>{user.name}</p>
+                                      <p className="text-gray-400">@{user.username}</p>
                                   </div>
                               </div>
                           )

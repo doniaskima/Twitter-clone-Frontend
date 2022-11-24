@@ -1,5 +1,4 @@
 require("dotenv").config();
-const port = process.env.PORT || 3000;
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
@@ -90,7 +89,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(helmet());
 app.use(compression());
 
-
+const port = process.env.PORT || 4000;
 //server listening
 app.listen(port, () => {
     console.log(`backend server running on port ${port}`);
