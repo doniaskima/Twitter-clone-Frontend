@@ -129,6 +129,28 @@ export const followUser = createAsyncThunk(
     }
   );
 
+  export const fetchRecentlyJoinedUsers = createAsyncThunk(
+    "user/fetchRecentlyJoinedUsers",
+    async (_, thunkAPI) => {
+      try {
+        const {
+          user: {
+            data: { _id: userId },
+          },
+        } = thunkAPI.getState();
+        const { data } = await axios.get(
+          `${BaseUrl}/users/get-recently-joined-users/${userId}`
+        );
+        if (data.success) {
+          return data;
+        }
+        return thunkAPI.rejectWithValue({ errorMessage: data.message });
+      } catch (error) {
+        return thunkAPI.rejectWithValue({ errorMessage: error.message });
+      }
+    }
+  );
+
 const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -248,6 +270,17 @@ const userSlice = createSlice({
             state.errorMessage = "";
             state.data.following.push(action.payload.targetUserId);
         },
+        [fetchRecentlyJoinedUsers.pending]: (state) => {
+            state.recentlyJoinedUsersLoading = true;
+        },
+        [fetchRecentlyJoinedUsers.rejected]: (state, action) => {
+            state.recentlyJoinedUsersLoading = false;
+            state.errorMessage = action.payload.errorMessage;
+        },
+        [fetchRecentlyJoinedUsers.fulfilled]: (state, action) => {
+            state.recentlyJoinedUsers = action.payload.users;
+            state.recentlyJoinedUsersLoading = false;
+          },
     },
 });
 
