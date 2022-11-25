@@ -169,6 +169,8 @@ const userSlice = createSlice({
         loading: false,
         errorMessage: "",
         initialLoading: true,
+        recentlyJoinedUsers: [],
+        recentlyJoinedUsersLoading: false,
     },
     reducers: {
         logoutUser: (state) => {
