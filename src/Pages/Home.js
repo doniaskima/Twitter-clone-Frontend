@@ -6,6 +6,7 @@ import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar
 import Feed from "../components/HomePageComponents/Feed";
 import { Link } from "react-router-dom";
 import {Post} from "../components/HomePageComponents/Post"
+import RecentlyJoinedUsers from "../components/HomePageComponents/RecentlyJoinedUsers";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,9 @@ export const Home = () => {
         <div className="mt-10 w-full">
           <NewPost />
           {/* <Feed /> */}
-          <Post post="I like u "/>
+        </div>
+        <div>
+           <RecentlyJoinedUsers/>
         </div>
       </div>
     </div>
