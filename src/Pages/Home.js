@@ -18,21 +18,23 @@ export const Home = () => {
 
 
   return (
-    <div className="h-screen flex bg-white">
-      <SideNavigationBar />
-      <div className="w-600 border">
-        <div className="fixed w-600 h-10">
-          <span className="font-semibold" role="heading">Home</span>
-        </div>
-        <div className="mt-10 w-full">
-          <NewPost />
-          {/* <Feed /> */}
-        </div>
-        <div className="ml-5">
-           <RecentlyJoinedUsers/>
-        </div>
+    <div className="flex h-screen bg-white">
+    <SideNavigationBar />
+    <div className="w-600 border">
+      <div className="fixed w-600 h-10 bg-white flex items-center p-2 border">
+        <span className="font-semibold" role="heading">
+          Home
+        </span>
+      </div>
+      <div className="mt-10 w-full">
+        <NewPost />
+        {/* <Feed /> */}
       </div>
     </div>
+    <div className="ml-5">
+      <RecentlyJoinedUsers />
+    </div>
+  </div>
   )
 }
 
