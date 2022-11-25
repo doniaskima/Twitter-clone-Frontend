@@ -25,7 +25,7 @@ export const Home = () => {
         </div>
         <div className="mt-10 w-full">
           <NewPost />
-          <Feed/>
+          {/* <Feed/> */}
         </div>
       </div>
     </div>
