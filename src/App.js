@@ -32,13 +32,12 @@ function App() {
     <div className="App h-screen">
        
       <Routes>   
-      <Route path="/" element={<PostInfo />} />
-          {/* <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
         </Route>
-        <Route path="/notifications" element={<PrivateRoute />}>
+        {/* <Route path="/notifications" element={<PrivateRoute />}>
           <Route path="/notifications" element={<Notification />} />
         </Route>
         <Route path="/profile/:userId" element={<PrivateRoute />}>
