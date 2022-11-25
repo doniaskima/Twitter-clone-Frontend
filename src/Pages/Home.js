@@ -5,12 +5,12 @@ import NewPost from "../components/HomePageComponents/NewPost";
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import Feed from "../components/HomePageComponents/Feed";
 import { Link } from "react-router-dom";
-
+import {Post} from "../components/HomePageComponents/Post"
 
 export const Home = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.data._id);
-
+  
   useEffect(() => {
     dispatch(fetchUserFeed(userId));
   }, []);
@@ -25,7 +25,8 @@ export const Home = () => {
         </div>
         <div className="mt-10 w-full">
           <NewPost />
-          {/* <Feed/> */}
+          {/* <Feed /> */}
+          <Post post="I like u "/>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { likePost, unlikePost } from "../../features/post/postSlice";
 dayjs.extend(window.dayjs_plugin_relativeTime);
  
 
- const Post = ({ post }) => {
+export const Post = ({ post }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.user.data._id);
@@ -29,33 +29,46 @@ dayjs.extend(window.dayjs_plugin_relativeTime);
         alt={post.authorName}
         loading="lazy"
         className="w-10 h-10 mr-2 rounded-full"
-        onClick={(e) => e.stopPropagation()}
       />
         <div className="ml-2 w-full">
-          <div className="leading-tight" onClick={(e) => e.stopPropagation()}>
-            <span className="font-semibold">{post.authorName}</span>
-            <span className="text-gray-400 text-sm float-right">{`${dayjs(
-              post.createdAt
-            ).fromNow()}`}</span>
+          <div className="leading-tight flex">
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/profile/${post.author}`);
+              }}
+              className="hover:underline"
+            >
+              <p className="font-semibold">{post.authorName}</p>
+              <p className="text-gray-400">{`@${post.authorUsername}`}</p>
+            </div>
+            <span className="text-gray-400 text-sm ml-auto">{createdAt}</span>
           </div>
-          <span className="text-gray-400">{`@${post.authorUsername}`}</span>
-          <div className="py-5">{post.content}</div>
+          <div className="py-5">
+            {post.content}
+          </div>
           <div className="flex space-x-4 items-center">
             <span>
               <i>
-                <FaRegComment className="inline mr-1" />
-              </i>
-              {post.comments.length}
+                <FaRegComment className="inline mr-1"/>
+              </i>  
+              {/* {post?.comments.length} */}
             </span>
+
             <span onClick={(e) => likeHandler(e, post.isLikedByUser)}>
               <i>
-                {post.isLikedByUser ? (
-                  <FaHeart className="text-pink-600 inline mr-1" />
-                ) : (
-                  <FaRegHeart className="inline mr-1" />
-                )}
+                {
+                  post.isLikedByUser ? (
+                     <FaHeart className=" text-pink-600 mr-1 inline"/>
+                  ): (
+                      <FaRegHeart 
+                        className="inline mr-1"
+                      />
+                  )
+                }
+
               </i>
-              {post.likes.length}
+              {/* {post.likes.length} */}
             </span>
           </div>
         </div>
@@ -64,4 +77,3 @@ dayjs.extend(window.dayjs_plugin_relativeTime);
 }
   
 
-export default Post;

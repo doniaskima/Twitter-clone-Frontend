@@ -360,7 +360,7 @@ const postSlice = createSlice({
         },
         [deletePost.fulfilled]: (state, action) => {
             const index = state.comments.findIndex(
-                (comment) => comment._id === action.payload.commentId
+                (comment) => comment._id  === action.payload.commentId
             );
             state.comments.splice(index, 1);
         },
