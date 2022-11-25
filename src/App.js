@@ -37,7 +37,7 @@ function App() {
         <Route path="/home" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
         </Route>
-        {/* <Route path="/notifications" element={<PrivateRoute />}>
+        <Route path="/notifications" element={<PrivateRoute />}>
           <Route path="/notifications" element={<Notification />} />
         </Route>
         <Route path="/profile/:userId" element={<PrivateRoute />}>
@@ -48,7 +48,7 @@ function App() {
         </Route>
         <Route path="/post/:postId" element={<PrivateRoute />}>
           <Route path="/post/:postId" element={<PostInfo />} />
-        </Route>    */}
+        </Route>   
       </Routes>
     </div>
   );

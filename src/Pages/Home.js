@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../assets/logo.png";
 import { fetchUserFeed } from "../features/post/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import NewPost from "../components/HomePageComponents/NewPost";
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import Feed from "../components/HomePageComponents/Feed";
+import { Link } from "react-router-dom";
 
 
 export const Home = () => {
@@ -33,3 +32,4 @@ export const Home = () => {
   )
 }
 
+ 
