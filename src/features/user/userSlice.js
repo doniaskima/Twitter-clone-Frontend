@@ -279,31 +279,33 @@ const userSlice = createSlice({
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserFollowers.pending]: (state) => {
-            state.loading = true;
+            state.profileTabsFetching = true;
+            state.errorMessage = "";
         },
         [fetchUserFollowers.rejected]: (state, action) => {
-            state.loading = true;
+            state.profileTabsFetching = true;
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserFollowers.fulfilled]: (state, action) => {
-            state.loading = false;
+            state.profileTabsFetching = false;
             state.errorMessage = "";
-            state.data.followers = action.payload.followers;
+            state.retrievedUser.followers = action.payload.followers;
         },
         [fetchUserFollowing.pending]: (state) => {
-            state.loading = true;
+            state.profileTabsFetching = true;
+            state.errorMessage = "";
         },
         [fetchUserFollowing.rejected]: (state, action) => {
-            state.loading = false;
+            state.profileTabsFetching = false;
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserFollowing.fulfilled]: (state, action) => {
-            state.loading = false;
+            state.profileTabsFetching = false;
             state.errorMessage = "";
-            state.data.following = action.payload.following;
+            state.retrievedUser.following = action.payload.following;
         },
         [fetchUserInfo.pending]: (state) => {
-            state.loading = true;
+            state.retrievedUserLoading = true;
         },
         [fetchUserInfo.rejected]: (state, action) => {
             state.loading = false;
