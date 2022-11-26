@@ -148,8 +148,38 @@ export const followUser = createAsyncThunk(
       } catch (error) {
         return thunkAPI.rejectWithValue({ errorMessage: error.message });
       }
+
+        
     }
   );
+
+export const unFollowUser = createAsyncThunk(
+    "user/unFollowUser",
+    async ({ targetId }, thunkAPI) => {
+        try {
+            const { 
+                user: {
+                    data:{_id:sourceId},
+                },
+            } = thunkAPI.getState();
+            const { data } = await axios.post(`${BaseUrl}/users/follow`, {
+                targetId,
+                sourceId,
+            });
+            if(data.success){
+                return data;
+            }
+
+            return thunkAPI.rejectWithValue({
+                errorMessage:data.message
+            })
+        } catch (error) {
+            return thunkAPI.rejectWithValue({
+                errorMessage: error.message
+            })
+        }
+    }
+)
 
 const userSlice = createSlice({
     name: "user",
