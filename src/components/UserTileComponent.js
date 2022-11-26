@@ -18,7 +18,7 @@ const UserTileComponent = ({ user }) => {
             dispatch(followUser({ targetId: user._id }));
         }
     }
-    
+
   return (
       <div
           key={user._id} 
@@ -32,8 +32,8 @@ const UserTileComponent = ({ user }) => {
               className="w-10 h-10 mr-2 rounded-full"
           />
           <div className="text-left">
-              <p>{user.name}</p>
-              <p>@{user.username}</p>
+              <p className="leading-4">{user.name}</p>
+              <p className="leading-4">@{user.username}</p>
           </div>
           {isClientTile && (
               <button
