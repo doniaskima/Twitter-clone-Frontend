@@ -312,10 +312,17 @@ const userSlice = createSlice({
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserInfo.fulfilled]: (state, action) => {
-            state.loading = false;
+            state.retrievedUserLoading = false;
             state.errorMessage = "";
+            state.retrievedUser = action.payload.user;
+        },
+        [followUser.fulfilled]: (state, action) => {
             state.data.following.push(action.payload.targetUserId);
         },
+        [unFollowUser.fulfilled]: (state, action) => {
+            const index = state.data.following.indexOf(action.payload.targetUserId);
+            state.data.following.splice(index, 1);
+          },
         [fetchRecentlyJoinedUsers.pending]: (state) => {
             state.recentlyJoinedUsersLoading = true;
         },
