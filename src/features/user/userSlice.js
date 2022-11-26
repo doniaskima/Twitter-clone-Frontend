@@ -306,9 +306,10 @@ const userSlice = createSlice({
         },
         [fetchUserInfo.pending]: (state) => {
             state.retrievedUserLoading = true;
+            state.errorMessage = "";
         },
         [fetchUserInfo.rejected]: (state, action) => {
-            state.loading = false;
+            state.retrievedUserLoading = false;
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserInfo.fulfilled]: (state, action) => {
