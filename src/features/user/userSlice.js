@@ -52,9 +52,9 @@ export const signupUserAsync = createAsyncThunk(
 
 export const fetchUserFollowers = createAsyncThunk(
     "user/fetchUserFollowers",
-    async ({ userId }, thunkAPI) => {
+    async (body, thunkAPI) => {
         try {
-            const { data } = await axios.get(`${BaseUrl}/users/followers/${userId}`);
+            const { data } = await axios.post(`${BaseUrl}/users/followers`,body);
             if (data.success) {
                 return data;
             }
@@ -71,9 +71,9 @@ export const fetchUserFollowers = createAsyncThunk(
 
 export const fetchUserFollowing = createAsyncThunk(
     "user/fetchUserFollowing",
-    async ({ userId }, thunkAPI) => {
+    async (body, thunkAPI) => {
         try {
-            const { data } = await axios.get(`${BaseUrl}/users/following/${userId}`);
+            const { data } = await axios.post(`${BaseUrl}/users/following`,body);
             if (data.success) {
                 return data;
             }
