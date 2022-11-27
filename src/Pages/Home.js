@@ -21,7 +21,7 @@ export const Home = () => {
     <div className="flex h-screen bg-white">
     <SideNavigationBar />
     <div className="w-600 border">
-      <div className="fixed w-600 h-10 bg-white flex items-center p-2 border">
+      <div className="fixed w-600 h-10 bg-white flex items-center p-2 border-b-0">
         <span className="font-semibold" role="heading">
           Home
         </span>
