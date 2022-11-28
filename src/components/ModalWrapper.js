@@ -12,3 +12,5 @@ const ModalWrapper = ({ ariaLabel, callback, children }) => {
         </div>
     )
 }
+
+export default ModalWrapper;

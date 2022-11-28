@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPostLikes } from "../../features/post/postSlice";
 import { GrClose } from "react-icons/gr";
 import Spinner from "../Spinner";
+import ModalWrapper from "../ModalWrapper";
+import  UserTileComponent  from "../UserTileComponent";
 
 export const LikesModal = ({ postId, setShowModal }) => {
 
@@ -13,13 +15,7 @@ export const LikesModal = ({ postId, setShowModal }) => {
     }, []);
 
   return (
-      <div
-          aria-modal="true"
-          aria-label="Likes"
-          role="dialog"
-          className="absolute h-screen w-full flex justify-center items-center bg-black to-0 bg-opacity-50"
-          onClick={() =>setShowModal(false)}
-      >
+<ModalWrapper callback={() => setShowModal(false)} ariaLabel="Likes">
           <div className="h-96 w-96 bg-white rounded-md">
               <div className="py-2 px-3 flex items-center border-b-2 border-gray-200">
                   <span className="text-xl font-medium">
@@ -40,23 +36,13 @@ export const LikesModal = ({ postId, setShowModal }) => {
                   </div>
               ) : (
                       likes.map((user) => {
-                          return (
-                              <div className="flex border py-2 px-3 items-center"
-                                  key={user._id}
-                              >
-                                  <div className="bg-gray-300 w-10 h-10 rounded-full mr-2"></div>
-                                  <div>
-                                      <p>{user.name}</p>
-                                      <p className="text-gray-400">@{user.username}</p>
-                                  </div>
-                              </div>
-                          )
+                        return <UserTileComponent key={user._id} user={user} />;
                       })       
               )}
         </div>  
        
           
-    </div>
+        </ModalWrapper>
   )
 }
 
