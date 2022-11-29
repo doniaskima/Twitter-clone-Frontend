@@ -33,11 +33,14 @@ const Notification = () => {
                   <div className="border py-5 px-3">
                     <p>
                       <li>
-                        {notification.type === "LIKED" ? (
-                          <FaHeart className="text-pink-400 inline mr-3"/>
-                        ) : (
-                          <FaRegComment className="inline mr-3 text-pink-400" />    
-                        )}
+                      {notification.type === "LIKED" ? (
+                        <FaHeart className="text-pink-400 inline mr-3" />
+                      ) : notification.type === "NEW_COMMENT" ? (
+                        <FaRegComment className="inline mr-3" />
+                      ) : (
+                        <FaRegUser className="inline mr-3" />
+                      )}
+                    </i>
                       </li>
                       <Link to={`/profile/${notification.sourceId}`}>
                       <span className="font-semibold mr-1">
@@ -46,7 +49,9 @@ const Notification = () => {
                       </Link>
 
                       <span>
-                        {notification.type==="LIKED" ?"liked your post":"commented on your post"}
+                        {notification.type==="LIKED" ?"liked your post"                        : notification.type === "NEW_COMMENT"
+                        ? "commented on your post"
+                        : "followed you"}
                       </span>
                     </p>
                   </div>
