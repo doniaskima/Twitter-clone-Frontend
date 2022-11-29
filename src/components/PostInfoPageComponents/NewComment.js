@@ -20,7 +20,7 @@ export const NewComment = ({ userId, postId }) => {
   }
   return (
     <div className="border p-2 flex justify-between">
-          <img
+      <img
         src={profileUrl}
         alt={name}
         loading="lazy"

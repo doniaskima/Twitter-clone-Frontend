@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaRegComment, FaHeart } from "react-icons/fa";
+import { FaRegComment, FaHeart,FaRegUser } from "react-icons/fa";
 import { fetchNotifications } from "../features/notification/notificationsSlice"
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
