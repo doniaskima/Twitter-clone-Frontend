@@ -162,7 +162,7 @@ export const unFollowUser = createAsyncThunk(
                     data:{_id:sourceId},
                 },
             } = thunkAPI.getState();
-            const { data } = await axios.post(`${BaseUrl}/users/follow`, {
+            const { data } = await axios.post(`${BaseUrl}/users/unfollow`, {
                 targetId,
                 sourceId,
             });
@@ -180,6 +180,29 @@ export const unFollowUser = createAsyncThunk(
         }
     }
 )
+
+export const updateUserInfo = createAsyncThunk(
+    "user/updateUserInfo",
+    async (body, thunkAPI) => {
+      try {
+        const {
+          user: {
+            data: { _id: userId },
+          },
+        } = thunkAPI.getState();
+        const { data } = await axios.put(
+          `${BASE_URL}/users/update/${userId}`,
+          body
+        );
+        if (data.success) {
+          return data;
+        }
+        return thunkAPI.rejectWithValue({ errorMessage: data.message });
+      } catch (error) {
+        return thunkAPI.rejectWithValue({ errorMessage: error.message });
+      }
+    }
+  );
 
 const userSlice = createSlice({
     name: "user",
