@@ -317,6 +317,10 @@ const userSlice = createSlice({
         [fetchUserFollowing.pending]: (state) => {
             state.profileTabsFetching = true;
             state.errorMessage = "";
+            state.retrievedUser.following = action.payload.following;
+            if (state.data._id === state.retreivedUser._id) {
+                state.data.following = action.payload.following;
+            }
         },
         [fetchUserFollowing.rejected]: (state, action) => {
             state.profileTabsFetching = false;
