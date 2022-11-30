@@ -346,6 +346,9 @@ const userSlice = createSlice({
         },
         [followUser.fulfilled]: (state, action) => {
             state.data.following.push(action.payload.targetUserId);
+            if (state.retreivedUser._id === action.payload.targetUserId) {
+                state.retreivedUser.followers.push(state.data._id)
+            }
         },
         [unFollowUser.fulfilled]: (state, action) => {
             const index = state.data.following.indexOf(action.payload.targetUserId);
