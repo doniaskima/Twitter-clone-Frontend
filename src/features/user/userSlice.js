@@ -351,7 +351,7 @@ const userSlice = createSlice({
             }
         },
         [unFollowUser.fulfilled]: (state, action) => {
-            const index = state.data.following.indexOf(action.payload.targetUserId);
+            let index = state.data.following.indexOf(action.payload.targetUserId);
             state.data.following.splice(index, 1);
           },
         [fetchRecentlyJoinedUsers.pending]: (state) => {
