@@ -40,7 +40,7 @@ const Notification = () => {
                       ) : (
                         <FaRegUser className="inline mr-3" />
                       )}
-                    </i>
+                    
                       </li>
                       <Link to={`/profile/${notification.sourceId}`}>
                       <span className="font-semibold mr-1">
