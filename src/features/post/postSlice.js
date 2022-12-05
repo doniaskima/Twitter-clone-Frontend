@@ -1,7 +1,6 @@
 import axios from "axios";
 import { BaseUrl } from "../../utils/BaseUrl";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
-
 export const fetchUserFeed = createAsyncThunk(
   "post/fetchFeed",
   async ({ userId }, thunkAPI) => {

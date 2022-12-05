@@ -7,6 +7,8 @@ import Feed from "../components/HomePageComponents/Feed";
 import { Link } from "react-router-dom";
 import {Post} from "../components/HomePageComponents/Post"
 import {RecentlyJoinedUsers} from "../components/HomePageComponents/RecentlyJoinedUsers";
+import SearchBox from "../components/search/SearchBox";
+
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,8 @@ export const Home = () => {
         {/* <Feed /> */}
       </div>
     </div>
-    <div className="ml-5">
+    <div className="ml-5 w-80">
+        <SearchBox />
       <RecentlyJoinedUsers />
     </div>
   </div>
