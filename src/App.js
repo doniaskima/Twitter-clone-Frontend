@@ -15,7 +15,7 @@ import Signup from "./Pages/Signup";
 import Notification from "./Pages/Notification";
 import PostInfo from "./Pages/PostInfo";
 import Messages from "./Pages/Messages";
- 
+import Explore from "./Pages/Explore";
 import Profile from "./Pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
@@ -42,6 +42,9 @@ function App() {
         </Route>
         <Route path="/profile/:userId" element={<PrivateRoute />}>
           <Route path="/profile/:userId" element={<Profile />} />
+        </Route>
+        <Route path="/explore" element={<PrivateRoute />}>
+          <Route path="/explore" element={<Explore />} />
         </Route>
         <Route path="/messages" element={<PrivateRoute />}>
           <Route path="/messages" element={<Messages />} />
