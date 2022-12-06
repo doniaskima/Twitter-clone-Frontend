@@ -33,6 +33,7 @@ const SideNavigationBar = () => {
                 styleClass="lg:hidden"
               >
                 <BiSearch className="text-2xl" />
+                <span className="hidden lg:inline">Explore</span>
               </SideBarNavLink>
               <SideBarNavLink
                 to="/notifications"
