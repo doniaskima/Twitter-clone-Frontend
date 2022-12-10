@@ -1,28 +1,29 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { validateEmail } from "../utils/BaseUrl";
 import { Input, Label } from "../components/FormComponents";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { signupUserAsync } from "../features/user/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { validateEmail } from "../utils/BaseUrl";
-import { useNavigate } from "react-router-dom";
 
-export const Signup = () => {
-  const [name, setName] = useState("");
+
+const Signup = () => {
+   
+  const [name,setName]=useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { loading, errorMessage } = useSelector((state) => state.user);
   const matchPassword = confirmPassword === password;
 
   const isPasswordValid = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(
     password
   );
-
   const signupHandler = async (event) => {
     event.preventDefault();
     setError("");
@@ -40,6 +41,7 @@ export const Signup = () => {
       setError("Please enter a valid email");
       return;
     }
+
     if (!isPasswordValid) {
       setError(
         "Password must be 8 characters long, have one upper and lower case character and one number."
@@ -61,31 +63,32 @@ export const Signup = () => {
     if (meta.requestStatus === "fulfilled") {
       navigate("/home");
     }
-  };
+  }
+   return (
+     <div className="h-screen flex justify-center back">
+       <div className="text-center mt-14">
+         <h1 className="text-5xl font-semibold mb-4">
+           Twitter
+         </h1>
+         {error !== "" && (
+           <p className="text-red-600 font-meduim max-w-sm">{error}</p>
+         )}
+         {errorMessage !== "" && (
+           <p className="text-red-600 font-medium max-w-sm">{errorMessage}</p>
+         )}
 
-  return (
-    <div className="h-screen flex justify-center back">
-      <div className="text-center mt-14">
-        <h1 className="text-5xl font-semibold mb-4">Nova Socials</h1>
-        {error !== "" && (
-          <p className="text-red-600 font-medium max-w-sm">{error}</p>
-        )}
-        {errorMessage !== "" && (
-          <p className="text-red-600 font-medium max-w-sm">{errorMessage}</p>
-        )}
-        <div className="bg-gray-200 p-4 text-left rounded-md mt-2 shadow-lg">
-          <form onSubmit={signupHandler}>
-            <div>
-              <Label htmlFor="name" labelText="Name" id="name-input-title" />
-              <Input
-                value={name}
+         <div className="bg-gray-200 p-4 text-left rounded-md mt-2 shadow-lg">
+           <form onSubmit={signupHandler}>
+             <div>
+               <Label htmlFor="name" labelText="Name" id="name-input-title"></Label>
+               <Input
+                 value={name}
                 id="name"
                 placeholder="Name"
                 ariaLabelledBy="name-input-title"
-                callback={setName}
-              />
-            </div>
-            <div>
+                callback={setName}/>
+             </div>
+             <div>
               <Label
                 htmlFor="username"
                 labelText="Username"
@@ -98,8 +101,8 @@ export const Signup = () => {
                 value={username}
                 callback={setUsername}
               />
-            </div>
-            <div>
+             </div>
+             <div>
               <Label htmlFor="email" labelText="Email" id="email-input-title" />
               <Input
                 callback={setEmail}
@@ -108,8 +111,8 @@ export const Signup = () => {
                 id="email"
                 ariaLabelledBy="email-input-title"
               />
-            </div>
-            <div>
+             </div>
+             <div>
               <Label
                 htmlFor="password"
                 id="password-input-title"
@@ -139,8 +142,8 @@ export const Signup = () => {
                   />
                 )}
               </div>
-            </div>
-            <div>
+             </div>
+             <div>
               <Label
                 htmlFor="confirmPassword"
                 id="confirmPassword-input-title"
@@ -153,8 +156,8 @@ export const Signup = () => {
                 value={confirmPassword}
                 callback={setConfirmPassword}
               />
-            </div>
-            <div className="flex justify-center">
+             </div>
+             <div className="flex justify-center">
               <button
                 type="submit"
                 className="bg-blue-500 text-white px-3 py-2 rounded-md mt-2 w-36 font-semibold shadow-md"
@@ -162,11 +165,12 @@ export const Signup = () => {
                 {!loading ? "Signup" : "Signing In..."}
               </button>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default signupHandler;
+             
+           </form>
+         </div>
+       </div>
+     </div>
+   )
+ }
+ 
+ export default Signup
