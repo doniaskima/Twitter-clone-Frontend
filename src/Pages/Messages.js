@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Header from "../components/MessagesPageComponents/Header"
 const Messages = () => {
   return (
-    <div>Messages</div>
+   <Header/>
   )
 }
 
