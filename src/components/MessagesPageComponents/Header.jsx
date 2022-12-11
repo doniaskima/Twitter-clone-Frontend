@@ -1,26 +1,9 @@
-import { BiArrowBack } from "react-icons/bi";
-import { useNavigate } from "react-router";
+import React from 'react'
 
-const Header = ({ recipient }) => {
-  const navigate = useNavigate();
-
+const Header = () => {
   return (
-    <div className="flex space-x-2 px-2 py-1">
-      <i aria-label="Back" role="button" className="lg:hidden">
-        <BiArrowBack className="inline" onClick={() => navigate(-1)} />
-      </i>
-      <img
-        src={recipient.profileUrl}
-        alt={recipient.name}
-        loading="lazy"
-        className="w-10 h-10 rounded-full"
-      />
-      <div className="">
-        <p className="leading-5 font-medium">{recipient.name}</p>
-        <p className="leading-3 text-gray-400 text-sm">{`@${recipient.username}`}</p>
-      </div>
-    </div>
-  );
-};
+    <div>Header</div>
+  )
+}
 
-export default Header;
+export default Header

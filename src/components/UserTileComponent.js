@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {followUser,unFollowUser}  from "../features/user/userSlice.js"
 
-export const UserTileComponent = ({ user }) => {
+const UserTileComponent = ({ user }) => {
     const navigate = useNavigate();
     const [isFollowedByClient, setIsFollowedByClient] = useState(user.isFollowedByClient);
     const dispatch = useDispatch();

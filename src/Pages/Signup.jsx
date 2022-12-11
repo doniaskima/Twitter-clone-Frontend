@@ -65,7 +65,7 @@ const Signup = () => {
     }
   }
    return (
-     <div className="h-screen flex justify-center back">
+     <div className="h-screen flex justify-center  ">
        <div className="text-center mt-14">
          <h1 className="text-5xl font-semibold mb-4">
            Twitter

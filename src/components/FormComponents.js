@@ -1,8 +1,7 @@
 export const Input = ({ callback, value, placeholder, id, ariaLabelledBy }) => {
   return (
     <input
-      name={name}
-      onChange={callback}
+      onChange={(e) => callback(e.target.value)}
       placeholder={placeholder}
       value={value}
       id={id}
