@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import EditProfileModal from "../components/ProfilePageComponents/EditProfileModal";
 import Spinner from "../components/Spinner";
 
+
 const Profile = () => {
   const { retreivedUser, retreivedUserLoading: loading } = useSelector((state) => state.user);
   const loggedInUser = useSelector((state) => state.user);
@@ -120,7 +121,7 @@ const Profile = () => {
       {showProfileModal && (
         <EditProfileModal
           setShowProfileModal={setShowProfileModal}
-          user={retrievedUser}
+          user={retreivedUser}
         />
       )}
 </div>
