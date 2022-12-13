@@ -16,7 +16,7 @@ const Notification = () => {
   return (
     <div className="flex h-screen bg-white">
       <SideNavigationBar />
-      <div className="w-600 border">
+      <div className="w-600 border ml-0 md:ml-28 lg:ml-0">
         <div className="fixed w-600 h-10 bg-white flex items-center p-2 border">
           <span className="font-semibold" >
             Notifications
@@ -47,9 +47,8 @@ const Notification = () => {
                         {notification.sourceName}
                       </span>
                       </Link>
-
                       <span>
-                        {notification.type==="LIKED" ?"liked your post"                        : notification.type === "NEW_COMMENT"
+                        {notification.type==="LIKED" ?"liked your post": notification.type === "NEW_COMMENT"
                         ? "commented on your post"
                         : "followed you"}
                       </span>
@@ -74,4 +73,4 @@ const Notification = () => {
   )
 }
 
-export default Notification
+export default Notification;

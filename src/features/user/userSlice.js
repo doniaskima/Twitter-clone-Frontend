@@ -6,7 +6,7 @@ import { BaseUrl } from "../../utils/BaseUrl";
 
 export const loginUserAsync = createAsyncThunk(
     "user/login",
-    async ({ email, password }, thunkAPI) => {
+    async({ email, password }, thunkAPI) => {
         try {
             const { data } = await axios.post(`${BaseUrl}/users/login`, { email, password, });
             if (data.success) {
@@ -29,10 +29,13 @@ export const loginUserAsync = createAsyncThunk(
 
 export const signupUserAsync = createAsyncThunk(
     "user/signup",
-    async ({ username, name, email, password }, thunkAPI) => {
+    async({ username, name, email, password }, thunkAPI) => {
         try {
             const { data } = await axios.post(`${BaseUrl}/users/signup`, {
-                username, name, email, password,
+                username,
+                name,
+                email,
+                password,
             });
             if (data.success) {
                 axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
@@ -52,9 +55,9 @@ export const signupUserAsync = createAsyncThunk(
 
 export const fetchUserFollowers = createAsyncThunk(
     "user/fetchUserFollowers",
-    async (body, thunkAPI) => {
+    async(body, thunkAPI) => {
         try {
-            const { data } = await axios.post(`${BaseUrl}/users/followers`,body);
+            const { data } = await axios.post(`${BaseUrl}/users/followers`, body);
             if (data.success) {
                 return data;
             }
@@ -71,9 +74,9 @@ export const fetchUserFollowers = createAsyncThunk(
 
 export const fetchUserFollowing = createAsyncThunk(
     "user/fetchUserFollowing",
-    async (body, thunkAPI) => {
+    async(body, thunkAPI) => {
         try {
-            const { data } = await axios.post(`${BaseUrl}/users/following`,body);
+            const { data } = await axios.post(`${BaseUrl}/users/following`, body);
             if (data.success) {
                 return data;
             }
@@ -89,7 +92,7 @@ export const fetchUserFollowing = createAsyncThunk(
 
 export const fetchUserInfo = createAsyncThunk(
     "user/fetchUserInfo",
-    async ({ userId }, thunkAPI) => {
+    async({ userId }, thunkAPI) => {
         try {
             const { data } = await axios.get(`${BaseUrl}/users/${userId}`);
             if (data.success) {
@@ -108,70 +111,70 @@ export const fetchUserInfo = createAsyncThunk(
 
 export const followUser = createAsyncThunk(
     "user/followUser",
-    async ({ targetId }, thunkAPI) => {
-      try {
-        const {
-          user: {
-            data: { _id: sourceId },
-          },
-        } = thunkAPI.getState();
-        const { data } = await axios.post(`${BaseUrl}/users/follow`, {
-          targetId,
-          sourceId,
-        });
-        if (data.success) {
-          return data;
+    async({ targetId }, thunkAPI) => {
+        try {
+            const {
+                user: {
+                    data: { _id: sourceId },
+                },
+            } = thunkAPI.getState();
+            const { data } = await axios.post(`${BaseUrl}/users/follow`, {
+                targetId,
+                sourceId,
+            });
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
         }
-        return thunkAPI.rejectWithValue({ errorMessage: data.message });
-      } catch (error) {
-        return thunkAPI.rejectWithValue({ errorMessage: error.message });
-      }
     }
-  );
+);
 
-  export const fetchRecentlyJoinedUsers = createAsyncThunk(
+export const fetchRecentlyJoinedUsers = createAsyncThunk(
     "user/fetchRecentlyJoinedUsers",
-    async (_, thunkAPI) => {
-      try {
-        const {
-          user: {
-            data: { _id: userId },
-          },
-        } = thunkAPI.getState();
-        const { data } = await axios.get(
-          `${BaseUrl}/users/get-recently-joined-users/${userId}`
-        );
-        if (data.success) {
-          return data;
+    async(_, thunkAPI) => {
+        try {
+            const {
+                user: {
+                    data: { _id: userId },
+                },
+            } = thunkAPI.getState();
+            const { data } = await axios.get(
+                `${BaseUrl}/users/get-recently-joined-users/${userId}`
+            );
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
         }
-        return thunkAPI.rejectWithValue({ errorMessage: data.message });
-      } catch (error) {
-        return thunkAPI.rejectWithValue({ errorMessage: error.message });
-      }
 
-        
+
     }
-  );
+);
 
 export const unFollowUser = createAsyncThunk(
     "user/unFollowUser",
-    async ({ targetId }, thunkAPI) => {
+    async({ targetId }, thunkAPI) => {
         try {
-            const { 
+            const {
                 user: {
-                    data:{_id:sourceId},
+                    data: { _id: sourceId },
                 },
             } = thunkAPI.getState();
             const { data } = await axios.post(`${BaseUrl}/users/unfollow`, {
                 targetId,
                 sourceId,
             });
-            if(data.success){
+            if (data.success) {
                 return data;
             }
 
             return thunkAPI.rejectWithValue({
-                errorMessage:data.message
+                errorMessage: data.message
             })
         } catch (error) {
             return thunkAPI.rejectWithValue({
@@ -183,26 +186,26 @@ export const unFollowUser = createAsyncThunk(
 
 export const updateUserInfo = createAsyncThunk(
     "user/updateUserInfo",
-    async (body, thunkAPI) => {
-      try {
-        const {
-          user: {
-            data: { _id: userId },
-          },
-        } = thunkAPI.getState();
-        const { data } = await axios.put(
-          `${BASE_URL}/users/update/${userId}`,
-          body
-        );
-        if (data.success) {
-          return data;
+    async(body, thunkAPI) => {
+        try {
+            const {
+                user: {
+                    data: { _id: userId },
+                },
+            } = thunkAPI.getState();
+            const { data } = await axios.put(
+                `${BaseUrl}/users/update/${userId}`,
+                body
+            );
+            if (data.success) {
+                return data;
+            }
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
+        } catch (error) {
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
         }
-        return thunkAPI.rejectWithValue({ errorMessage: data.message });
-      } catch (error) {
-        return thunkAPI.rejectWithValue({ errorMessage: error.message });
-      }
     }
-  );
+);
 
 const userSlice = createSlice({
     name: "user",
@@ -215,6 +218,7 @@ const userSlice = createSlice({
             profileUrl: null,
             followers: [],
             following: [],
+            chats: [],
         },
         retreivedUser: {
             _id: null,
@@ -314,7 +318,7 @@ const userSlice = createSlice({
             state.errorMessage = "";
             state.retrievedUser.followers = action.payload.followers;
         },
-        [fetchUserFollowing.pending]: (state) => {
+        [fetchUserFollowing.pending]: (state, action) => {
             state.profileTabsFetching = true;
             state.errorMessage = "";
             state.retrievedUser.following = action.payload.following;
@@ -357,7 +361,7 @@ const userSlice = createSlice({
                 index = state.retreivedUser.followers.indexOf(state.data._id);
                 state.retreivedUser.followers.split(index, 1);
             }
-          },
+        },
         [fetchRecentlyJoinedUsers.pending]: (state) => {
             state.recentlyJoinedUsersLoading = true;
         },
@@ -368,9 +372,9 @@ const userSlice = createSlice({
         [fetchRecentlyJoinedUsers.fulfilled]: (state, action) => {
             state.recentlyJoinedUsers = action.payload.users;
             state.recentlyJoinedUsersLoading = false;
-          },
+        },
     },
 });
 
-export const { logoutUser,setUserFromLocalStorage, setInitialLoadingFalse } = userSlice.actions;
+export const { logoutUser, setUserFromLocalStorage, setInitialLoadingFalse } = userSlice.actions;
 export default userSlice.reducer;

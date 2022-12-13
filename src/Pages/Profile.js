@@ -12,8 +12,8 @@ import SwitchTabComponent from "../components/ProfilePageComponents/SwitchTabCom
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { useParams } from "react-router-dom";
-import Spinner from "../components/ProfilePageComponents/EditProfileModal";
-
+import EditProfileModal from "../components/ProfilePageComponents/EditProfileModal";
+import Spinner from "../components/Spinner";
 
 const Profile = () => {
   const { retreivedUser, retreivedUserLoading: loading } = useSelector((state) => state.user);
@@ -42,8 +42,8 @@ const Profile = () => {
   return (
     <div className="flex h-screen bg-white">
       <SideNavigationBar />
-      <div className="w-600 border">
-        <div className="flex w-600 bg-white flex items-center p-2 border">
+      <div className="w-600 border ml-0 md:ml-28 lg:ml-0">
+      <div className="fixed w-600 h-10 bg-white flex items-center p-2 border ">
           <span className="font-semibold">
             Profile
          </span>
@@ -114,7 +114,7 @@ const Profile = () => {
             </div>
         )}
       </div>
-      <div className="ml-8">
+      <div className="ml-8 hidden lg:block">
         <RecentlyJoinedUsers />
       </div>
       {showProfileModal && (
