@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { RiMailAddLine } from "react-icons/ri";
+import RecipientList from "../components/MessagesPageComponents/Recipientist"
 
 const Messages = () => {
   const user = useSelector((state) => state.user.data);
@@ -22,6 +23,9 @@ const Messages = () => {
             >
               <RiMailAddLine />
             </i>
+          </div>
+          <div className="w-full">
+            <RecipientList />
           </div>
         </div>
       </div>
