@@ -1,6 +1,7 @@
 import crypto from "crypto-js";
-export const BaseUrl = "https://twitter-clone-backend.onrender.com";
 import { toast } from "react-toastify";
+export const BaseUrl = "https://twitter-clone-backend.onrender.com";
+
 
 
 export function validateEmail(email) {

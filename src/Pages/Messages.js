@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import InitialSectionCover from "../components/MessagesPageComponents/InitialSectionCover"
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { RiMailAddLine } from "react-icons/ri";
-
+import RecipientList from "../components/MessagesPageComponents/Recipientist";
+import { useLocation } from "react-router-dom";
 const Messages = () => {
   const user = useSelector((state) => state.user.data);
+  const { pathname } = useLocation();
   const [showNewMessageModal, setShowNewMessageModal] = useState(false);
   return (
     <div className="flex h-screen bg-white">
@@ -22,6 +25,14 @@ const Messages = () => {
               <RiMailAddLine />
             </i>
           </div>
+          <div className="w-full">
+            <RecipientList />
+          </div>
+          {pathname === "/messages" && (
+          <InitialSectionCover
+            setShowNewMessageModal={setShowNewMessageModal}
+          />
+        )}
         </div>
       </div>
    </div>
