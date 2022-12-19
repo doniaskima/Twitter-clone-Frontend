@@ -1,6 +1,6 @@
 import crypto from "crypto-js";
 export const BaseUrl = "https://twitter-clone-backend.onrender.com";
-
+import { toast } from "react-toastify";
 
 
 export function validateEmail(email) {
@@ -19,3 +19,10 @@ export const decryptMessage = (key, message, iv) => {
     }).toString(crypto.enc.Utf8);
     return result;
 };
+
+
+
+export function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
+    toast("Copied to clipboard");
+  }
