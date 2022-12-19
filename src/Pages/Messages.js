@@ -4,7 +4,9 @@ import InitialSectionCover from "../components/MessagesPageComponents/InitialSec
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { RiMailAddLine } from "react-icons/ri";
 import RecipientList from "../components/MessagesPageComponents/Recipientist";
-import { useLocation } from "react-router-dom";
+import { useLocation , Outlet } from "react-router-dom";
+import NewMessageModal from "../components/MessagesPageComponents/NewMessageModal";
+import Toast from "../components/Toast/Toast";
 const Messages = () => {
   const user = useSelector((state) => state.user.data);
   const { pathname } = useLocation();
@@ -33,7 +35,12 @@ const Messages = () => {
             setShowNewMessageModal={setShowNewMessageModal}
           />
         )}
+         <Outlet />
         </div>
+        {showNewMessageModal && (
+        <NewMessageModal setShowNewMessageModal={setShowNewMessageModal} />
+      )}
+      <Toast />
       </div>
    </div>
   )
