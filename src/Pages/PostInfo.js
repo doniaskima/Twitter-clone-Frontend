@@ -1,49 +1,54 @@
-
-import {useState, useEffect} from 'react';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { BiArrowBack } from "react-icons/bi";
-import { useNavigate , useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Spinner from "../components/Spinner";
-import { NewComment, Comments, LikesModal ,EditPost } from "../components/PostInfoPageComponents/index";
 import {
   fetchSinglePost,
   deletePost,
-  fetchPostComments, } from "../features/post/postSlice";
+  fetchPostComments,
+} from "../features/post/postSlice";
+import Spinner from "../components/Spinner";
 import dayjs from "dayjs";
+import {
+  EditPost,
+  NewComment,
+  Comments,
+  LikesModal,
+} from "../components/PostInfoPageComponents/index";
 
 
-export const PostInfo = () => {
-  const navigate = useNavigate();
+const PostInfo = () => {
   const dispatch = useDispatch();
-  const {postId} = useParams();
   const { post, loading, errMessage } = useSelector((state) => state.post);
+  const user = useSelector((state) => state.user.data);
+  const navigate = useNavigate();
+  const { postId } = useParams();
+  const [showEditPost, setShowEditPost] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const likesCount = post?.likes?.length;
   const commentCount = post?.comments?.length;
-  const createdAt =
-  post !== null ? dayjs(post?.createdAt).format("h:mm A - MMM D, YYYY") : "";
-  const user = useSelector((state) => state.user.data);
-  const [showModal, setShowModal] = useState(false);
-  const [showEditPost, setShowEditPost] = useState(false);
   const isPostOwnedByUser = user._id === post?.author;
- 
+  const createdAt =
+    post !== null ? dayjs(post?.createdAt).format("h:mm A - MMM D, YYYY") : "";
 
-
-  const deleteHandler = () => {
-    dispatch(deletePost({postId:post._id}))
-  }
 
   useEffect(() => {
-  dispatch(fetchSinglePost({ postId }));
-  dispatch(fetchPostComments({ postId }));
-}, []);
+    dispatch(fetchSinglePost({ postId }));
+    dispatch(fetchPostComments({ postId }));
+  }, []);
 
+  const deleteHandler = () => {
+    dispatch(deletePost({ postId: post._id }));
+    navigate(-1);
+  };
 
   return (
     <>
       <div className="flex h-screen bg-white z-10">
         <SideNavigationBar />
-        <div className="w-600 border">
+        <div className="w-600 border ml-0 md:ml-28 lg:ml-0">
           <div className="fixed w-600 h-10 bg-white flex items-center p-2 border space-x-6">
             <i aria-label="Back" role="button">
               <BiArrowBack className="inline" onClick={() => navigate(-1)} />
@@ -63,9 +68,9 @@ export const PostInfo = () => {
             ) : (
               <div className="mt-10 w-full border">
                 <div className="p-2 flex">
-                <img
-                    src={post.authorProfileUrl}
-                    alt={post.authorName}
+                  <img
+                    src={post?.authorProfileUrl}
+                    alt={post?.authorName}
                     loading="lazy"
                     className="w-10 h-10 mr-2 rounded-full"
                   />
@@ -129,7 +134,7 @@ export const PostInfo = () => {
       </div>
       {showModal && <LikesModal postId={postId} setShowModal={setShowModal} />}
     </>
-  )
-}
+  );
+};
 
-export default PostInfo
+export default PostInfo;
