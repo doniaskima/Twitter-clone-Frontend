@@ -59,7 +59,7 @@ const SideNavigationBar = () => {
           </div>
         </div>
         <button
-        className="hidden md:block button md:mb-2"
+        className="hidden md:block  bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md md:mb-2"
           onClick={() => dispatch(logoutUser())}
         >
           Logout
