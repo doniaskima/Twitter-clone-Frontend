@@ -22,9 +22,11 @@ export const useSearch = (searchText) => {
             setLoading(true);
             const { data } = await axios.get(
                 `${BaseUrl}/users/search?text=${searchText}`
+
             );
             if (data.success) {
                 setResult(data.users);
+                console.log(data);
             }
             setLoading(false);
         }
