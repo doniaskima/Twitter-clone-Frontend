@@ -52,7 +52,7 @@ export const Post = ({ post }) => {
               <i>
                 <FaRegComment className="inline mr-1"/>
               </i>  
-              {/* {post?.comments.length} */}
+              {post?.comments.length}
             </span>
 
             <span onClick={(e) => likeHandler(e, post.isLikedByUser)}>
@@ -68,12 +68,12 @@ export const Post = ({ post }) => {
                 }
 
               </i>
-              {/* {post.likes.length} */}
+              {post.likes.length}
             </span>
           </div>
         </div>
       </div>
-    );
+    )
 }
   
 
