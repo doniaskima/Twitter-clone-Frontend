@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UserTileComponent } from "../UserTileComponent";
 import Spinner from "../Spinner";
 import { useSearch } from "./useSearch";
+import SearchField from "./SearchField";
 
 const SearchBox = () => {
   const [searchText, setSearchText] = useState("");
@@ -9,19 +10,21 @@ const SearchBox = () => {
   const [showDropDown, setShowDropDown] = useState(false);
 
 
+  const handleClose = () => {
+    if (!searchText.trim().length) {
+      setShowDropDown(false);
+    }
+  };
+
   return (
     <div className="w-full mt-2">
-      <input
-        onFocus={() => setShowDropDown(true)}
-        onBlur={() => setShowDropDown(false)}
-        type="search"
-        role="combobox"
-        aria-label="Search"
-        aria-owns="dropdown-1"
-        placeholder="Search Users"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="rounded-full border-2 border-gray-200 w-full h-10 outline-none px-2"
+      <SearchField
+         onFocus={() => setShowDropDown(true)}
+         onBlur={handleClose}
+         role="combobox"
+         ariaOwns="dropdown-1"
+         value={searchText}
+         callback={(e) => setSearchText(e.target.value)}
       />
       {showDropDown && (
         <div
