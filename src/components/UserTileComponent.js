@@ -22,7 +22,7 @@ export const UserTileComponent = ({ user }) => {
   return (
       <div
           key={user._id} 
-          className="user-tile-style py-2 px-3"
+          className="flex mb-1 items-start cursor-pointer hover:bg-gray-50 py-2 px-3"
           onClick={()=>navigate(`/profile/${user._id}`)}
       >
           <img
