@@ -3,28 +3,25 @@ import { UserTileComponent } from "../UserTileComponent";
 import Spinner from "../Spinner";
 import { useSearch } from "./useSearch";
 import SearchField from "./SearchField";
-
 const SearchBox = () => {
   const [searchText, setSearchText] = useState("");
   const { loading, result } = useSearch(searchText);
   const [showDropDown, setShowDropDown] = useState(false);
-
 
   const handleClose = () => {
     if (!searchText.trim().length) {
       setShowDropDown(false);
     }
   };
-
   return (
     <div className="w-full mt-2">
       <SearchField
-         onFocus={() => setShowDropDown(true)}
-         onBlur={handleClose}
-         role="combobox"
-         ariaOwns="dropdown-1"
-         value={searchText}
-         callback={(e) => setSearchText(e.target.value)}
+        onFocus={() => setShowDropDown(true)}
+        onBlur={handleClose}
+        role="combobox"
+        ariaOwns="dropdown-1"
+        value={searchText}
+        callback={(e) => setSearchText(e.target.value)}
       />
       {showDropDown && (
         <div
