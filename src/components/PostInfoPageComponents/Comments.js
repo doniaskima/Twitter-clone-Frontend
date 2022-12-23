@@ -37,7 +37,7 @@ export const Comments = () => {
                           onClick={() =>
                             dispatch(deleteComment({ commentId: comment._id }))
                           }
-                          className="small-button"
+                          className="ml-3 border-2 font-medium rounded-full px-2 py-1 hover:text-black hover:border-black"
                         >
                           Delete
                         </button>

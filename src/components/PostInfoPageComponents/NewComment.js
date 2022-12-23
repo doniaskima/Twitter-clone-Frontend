@@ -50,7 +50,7 @@ export const NewComment = ({ userId, postId }) => {
               </span>
             )}
           </div>
-          <button type="submit" className="button" disabled={disableBtn}>
+          <button type="submit" className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md" disabled={disableBtn}>
             comment
           </button>
         </div>

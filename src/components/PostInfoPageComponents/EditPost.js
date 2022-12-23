@@ -40,14 +40,14 @@ export const EditPost = ({ post, setShowEditPost }) => {
         </div>
         <div className="space-x-2">
           <button
-            className="button text-base bg-blue-400 text-white"
+            className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md text-base "
             onClick={() => setShowEditPost(false)}
           >
             Discard
           </button>
           <button
             type="submit"
-            className="button text-base bg-blue-400 text-white"
+            className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md text-base "
             disabled={disableBtn}
           >
             Save
