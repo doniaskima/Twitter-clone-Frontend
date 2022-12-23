@@ -10,7 +10,7 @@ const InitialSectionCover = ({ setShowNewMessageModal }) => {
           </p>
           <button
             onClick={() => setShowNewMessageModal(true)}
-            className="button mt-4"
+            className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md mt-4"
           >
             New Message
           </button>
