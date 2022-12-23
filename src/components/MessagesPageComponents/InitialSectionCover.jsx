@@ -20,3 +20,5 @@ const InitialSectionCover = ({ setShowNewMessageModal }) => {
   };
   
   export default InitialSectionCover;
+
+  //Left
