@@ -6,6 +6,7 @@ import {AiOutlineCalendar} from "react-icons/ai"
 import { useSelector, useDispatch } from "react-redux";
 import { RecentlyJoinedUsers } from '../components/HomePageComponents/RecentlyJoinedUsers';
 import Spinner from "../components/Spinner";
+import SwitchTabComponent from "../components/ProfilePageComponents/SwitchTabComponent";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Profile = () => {
                         <AiOutlineCalendar />
                         <p className='text-gray-400'>Joined December 24</p>
                       </div>
-                      <div className="mt-2">
+                      <div className="space-x-2 mt-2">
                         <span>
                           <span className="font-semibold">
                             233
@@ -60,9 +61,13 @@ const Profile = () => {
                            <span className="text-gray-400"> Following</span>
                         </span>
                       </div>
+                  
                     </div>
+           
                   </div>
+               
                 </div>
+                <SwitchTabComponent/>
               </div>
           )
         }
