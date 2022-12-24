@@ -7,6 +7,10 @@ import { RecentlyJoinedUsers } from '../components/HomePageComponents/RecentlyJo
 import Spinner from "../components/Spinner";
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const {retreivedUser , retreivedUserLoading:loading}=useSelector(
+    (state) => state.user
+  );
   return (
     <div className="flex h-screen bg-white">
     <SideNavigationBar />
@@ -15,7 +19,18 @@ const Profile = () => {
         <span className="font-semibold" >
           Profile
         </span>
-      </div>
+        </div>
+        {
+          loading ? (
+            <div>
+              <Spinner/>
+            </div>
+          ): (
+              <div className='mt-10 w-full'>
+
+              </div>
+          )
+        }
       </div>
     </div>
   )
