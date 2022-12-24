@@ -1,5 +1,11 @@
 import React from 'react'
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
+import { fetchUserInfo, followUser, unFollowUser } from "../features/user/userSlice";
+import dayjs from "dayjs";
+import { useSelector, useDispatch } from "react-redux";
+import { RecentlyJoinedUsers } from '../components/HomePageComponents/RecentlyJoinedUsers';
+import Spinner from "../components/Spinner";
+
 const Profile = () => {
   return (
     <div className="flex h-screen bg-white">
