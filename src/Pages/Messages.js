@@ -8,6 +8,8 @@ import { useLocation , Outlet } from "react-router-dom";
 import NewMessageModal from "../components/MessagesPageComponents/NewMessageModal";
 import Toast from "../components/Toast/Toast";
 import { useSocket } from "../SocketContext/socketContext";
+
+
 const Messages = () => {
   const user = useSelector((state) => state.user.data);
   const [showNewMessageModal, setShowNewMessageModal] = useState(false);

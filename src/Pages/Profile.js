@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RecentlyJoinedUsers } from '../components/HomePageComponents/RecentlyJoinedUsers';
 import Spinner from "../components/Spinner";
 import SwitchTabComponent from "../components/ProfilePageComponents/SwitchTabComponent";
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 const Profile = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
