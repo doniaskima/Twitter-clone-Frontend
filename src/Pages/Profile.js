@@ -11,12 +11,13 @@ import { useParams } from 'react-router-dom'
 const Profile = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const { retrievedUser, retreivedUserLoading: loading } = useSelector(
+  const { retreivedUser, retrievedUserLoading: loading } = useSelector(
     (state) => state.user
-  );
+  );  
   const loggedInUser = useSelector((state) => state.user.data);
+  const isLoggedInUser = loggedInUser._id === retreivedUser._id;
   const [showProfileModal, setShowProfileModal] = useState(false);
-
+   
   useEffect(() => {
     dispatch(fetchUserInfo({ userId }));
   }, [userId]);
