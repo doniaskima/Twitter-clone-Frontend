@@ -6,7 +6,7 @@ export const useSearch = (searchText) => {
     const [result, setResult] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const debouncer = useCallback(function(callback, delay) {
+    const debouncer = useCallback(function (callback, delay) {
         let timeoutId;
         return function debounced(...args) {
             clearTimeout(timeoutId);
@@ -17,16 +17,14 @@ export const useSearch = (searchText) => {
         };
     }, []);
 
-    const getSearchResult = useCallback(async(searchText) => {
+    const getSearchResult = useCallback(async (searchText) => {
         if (searchText !== "") {
             setLoading(true);
             const { data } = await axios.get(
                 `${BaseUrl}/users/search?text=${searchText}`
-
             );
             if (data.success) {
                 setResult(data.users);
-                console.log(data);
             }
             setLoading(false);
         }
