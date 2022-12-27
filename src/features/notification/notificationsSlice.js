@@ -2,27 +2,22 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BaseUrl } from "../../utils/BaseUrl";
 
-
 export const fetchNotifications = createAsyncThunk(
-
     "notification/fetchNotifications",
-    async ({ userId }, thunkAPI) => {
+    async({ userId }, thunkAPI) => {
         try {
-            const { data } = await axios.get(`${BaseUrl}/users/notifications/${userId}`);
+            const { data } = await axios.get(
+                `${BaseUrl}/users/notifications/${userId}`
+            );
             if (data.success) {
                 return data;
             }
-            return thunkAPI.rejectWithValue({
-                errorMessage: data.message
-            });
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
         } catch (error) {
-            return thunkAPI.rejectWithValue({
-                errorMessage: error.message
-            });
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
         }
     }
-)
-
+);
 
 const notificationSlice = createSlice({
     name: "notification",
@@ -31,18 +26,15 @@ const notificationSlice = createSlice({
         loading: false,
         errMessage: null,
     },
-    
     reducers: {
         addNewNotification: (state, action) => {
             state.notifications.unshift(action.payload);
         },
     },
-
     extraReducers: {
         [fetchNotifications.pending]: (state) => {
             state.loading = true;
         },
-
         [fetchNotifications.rejected]: (state, action) => {
             state.loading = false;
             state.errMessage = action.payload.errorMessage;
@@ -51,9 +43,9 @@ const notificationSlice = createSlice({
             state.errMessage = "";
             state.notifications = action.payload.notifications;
             state.loading = false;
-        }
-    }
-})
+        },
+    },
+});
 
 export const { addNewNotification } = notificationSlice.actions;
 
