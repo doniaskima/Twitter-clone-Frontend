@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { likePost, unlikePost } from "../../features/post/postSlice";
 dayjs.extend(window.dayjs_plugin_relativeTime);
- 
+
 
 export const Post = ({ post, isPostFromFeed }) => {
     const navigate = useNavigate();
