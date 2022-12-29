@@ -48,9 +48,11 @@ const Profile = () => {
                   />
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="font-semibold text-lg">Donia</p>
-                    <p>@Skima</p>
-                      <button className="py-2 px-3 border-2 border-black rounded-full onClick={() => setShowProfileModal(true)}">
+                      <p className="font-semibold text-lg">{retreivedUser.name}</p>
+                      <p>{`@${retreivedUser.username}`}</p>
+                      <button className="py-2 px-3 border-2 border-black rounded-full"
+                        onClick={() => setShowProfileModal(true)}
+                      >
                       Edit profile
                     </button>
                     <div className='py-2 text-base'>bio</div>
