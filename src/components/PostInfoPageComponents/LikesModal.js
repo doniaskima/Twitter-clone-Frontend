@@ -15,35 +15,35 @@ export const LikesModal = ({ postId, setShowModal }) => {
     dispatch(fetchPostLikes({ postId }));
   }, []);
   return (
-    <ModalWrapper callback={() => setShowModal(false)} ariaLabel="Likes">
-      <div
-        className="h-96 w-96 bg-white rounded-md overflow-auto"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <div className="py-2 px-3 flex items-center border-b-2 border-gray-200">
-          <span className="text-xl font-medium ">Liked by</span>
-          <i
-            className="ml-auto"
-            role="button"
-            aria-label="Close"
-            aria-describedby="Button to close dialog"
+      <ModalWrapper callback={() => setShowModal(false)} ariaLabel="Likes">
+          <div
+              className="h-96 w-96 bg-white rounded-md overflow-auto"
+              onClick={(e) => {
+                  e.stopPropagation();
+              }}
           >
-            <GrClose onClick={() => setShowModal(false)} />
-          </i>
-        </div>
-        {errMessage && <div>{errMessage}</div>}
-        {loadingLikes ? (
-          <div className="flex justify-center mt-2">
-            <Spinner />
+              <div className="py-2 px-3 flex items-center border-b-2 border-gray-200">
+                  <span className="text-xl font-medium ">Liked by</span>
+                  <i
+                      className="ml-auto"
+                      role="button"
+                      aria-label="Close"
+                      aria-describedby="Button to close dialog"
+                  >
+                      <GrClose onClick={() => setShowModal(false)} />
+                  </i>
+              </div>
+              {errMessage && <div>{errMessage}</div>}
+              {loadingLikes ? (
+                  <div className="flex justify-center mt-2">
+                      <Spinner />
+                  </div>
+              ) : (
+                  likes.map((user) => {
+                      return <UserTileComponent key={user._id} user={user} />;
+                  })
+              )}
           </div>
-        ) : (
-          likes.map((user) => {
-            return <UserTileComponent key={user._id} user={user} />;
-          })
-        )}
-      </div>
-    </ModalWrapper>
+      </ModalWrapper>
   );
 };

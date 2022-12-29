@@ -1,8 +1,7 @@
-import { ImSpinner9 } from "react-icons/im";
-
+import { CgSpinner } from "react-icons/cg";
 
 const Spinner = () => {
-    return <ImSpinner9 className="text-5xl animate-spin text-blue-500"/>
+    return <CgSpinner className="text-5xl animate-spin text-blue-500"/>
 }
 
 export default Spinner;
