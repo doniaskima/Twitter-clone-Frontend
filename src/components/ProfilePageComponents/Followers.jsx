@@ -11,12 +11,15 @@ const Followers = ({ userId }) => {
     profileTabsFetching,
     errorMessage,
   } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchUserFollowers({ userId, clientId }));
   }, []);
+
   return (
-<div className="mt-2">
+    <div className="mt-2">
       {followers.length != 0 && !profileTabsFetching && errorMessage && (
         <div className="mt-5 text-center">{errorMessage}</div>
       )}
@@ -33,7 +36,7 @@ const Followers = ({ userId }) => {
         })
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Followers
+export default Followers;
