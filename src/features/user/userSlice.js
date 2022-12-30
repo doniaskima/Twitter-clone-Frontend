@@ -92,22 +92,18 @@ export const fetchUserFollowing = createAsyncThunk(
 
 export const fetchUserInfo = createAsyncThunk(
     "user/fetchUserInfo",
-    async({ userId }, thunkAPI) => {
+    async ({ userId }, thunkAPI) => {
         try {
             const { data } = await axios.get(`${BaseUrl}/users/${userId}`);
             if (data.success) {
                 return data;
             }
-            return thunkAPI.rejectWithValue({
-                errorMessage: data.message
-            });
+            return thunkAPI.rejectWithValue({ errorMessage: data.message });
         } catch (error) {
-            return thunkAPI.rejectWithValue({
-                errorMessage: error.message
-            });
+            return thunkAPI.rejectWithValue({ errorMessage: error.message });
         }
     }
-)
+);
 
 export const followUser = createAsyncThunk(
     "user/followUser",
@@ -234,7 +230,7 @@ const userSlice = createSlice({
         isUserLoggedIn: false,
         loading: false,
         errorMessage: "",
-        retrievedUserLoading: false,
+        retreivedUserLoading: false,
         recentlyJoinedUsers: [],
         recentlyJoinedUsersLoading: false,
         initialLoading: true,
@@ -248,11 +244,11 @@ const userSlice = createSlice({
                 _id: null,
                 name: null,
                 username: null,
-                bio: null,
                 email: null,
+                bio: null,
                 profileUrl: null,
                 followers: [],
-                following: [],
+                followings: [],
             };
             state.token = null;
             state.isUserLoggedIn = false;
@@ -265,15 +261,15 @@ const userSlice = createSlice({
             if (jsonUser) {
                 user = JSON.parse(jsonUser);
             }
-            const token = localStorage.getItem("token");
+            const token = JSON.parse(localStorage.getItem("token"));
             if (user !== undefined && token !== null) {
                 state.isUserLoggedIn = true;
                 state.data = user;
                 state.token = token;
+                axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             }
             state.initialLoading = false;
         },
-
         setInitialLoadingFalse: (state) => {
             state.initialLoading = false;
         },
@@ -296,7 +292,7 @@ const userSlice = createSlice({
             state.loading = true;
         },
         [signupUserAsync.fulfilled]: (state, action) => {
-            action.loading = false;
+            state.loading = false;
             state.isUserLoggedIn = true;
             state.errorMessage = "";
             state.data = action.payload.user;
@@ -310,21 +306,20 @@ const userSlice = createSlice({
             state.errorMessage = "";
         },
         [fetchUserFollowers.rejected]: (state, action) => {
-            state.profileTabsFetching = true;
+            state.profileTabsFetching = false;
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserFollowers.fulfilled]: (state, action) => {
             state.profileTabsFetching = false;
             state.errorMessage = "";
-            state.retrievedUser.followers = action.payload.followers;
+            state.retreivedUser.followers = action.payload.followers;
+            if (state.data._id === state.retreivedUser._id) {
+                state.data.followers = action.payload.followers;
+            }
         },
-        [fetchUserFollowing.pending]: (state, action) => {
+        [fetchUserFollowing.pending]: (state) => {
             state.profileTabsFetching = true;
             state.errorMessage = "";
-            state.retrievedUser.following = action.payload.following;
-            if (state.data._id === state.retreivedUser._id) {
-                state.data.following = action.payload.following;
-            }
         },
         [fetchUserFollowing.rejected]: (state, action) => {
             state.profileTabsFetching = false;
@@ -333,25 +328,28 @@ const userSlice = createSlice({
         [fetchUserFollowing.fulfilled]: (state, action) => {
             state.profileTabsFetching = false;
             state.errorMessage = "";
-            state.retrievedUser.following = action.payload.following;
+            state.retreivedUser.following = action.payload.following;
+            if (state.data._id === state.retreivedUser._id) {
+                state.data.following = action.payload.following;
+            }
         },
         [fetchUserInfo.pending]: (state) => {
-            state.retrievedUserLoading = true;
+            state.retreivedUserLoading = true;
             state.errorMessage = "";
         },
         [fetchUserInfo.rejected]: (state, action) => {
-            state.retrievedUserLoading = false;
+            state.retreivedUserLoading = false;
             state.errorMessage = action.payload.errorMessage;
         },
         [fetchUserInfo.fulfilled]: (state, action) => {
-            state.retrievedUserLoading = false;
+            state.retreivedUserLoading = false;
             state.errorMessage = "";
-            state.retrievedUser = action.payload.user;
+            state.retreivedUser = action.payload.user;
         },
         [followUser.fulfilled]: (state, action) => {
             state.data.following.push(action.payload.targetUserId);
             if (state.retreivedUser._id === action.payload.targetUserId) {
-                state.retreivedUser.followers.push(state.data._id)
+                state.retreivedUser.followers.push(state.data._id);
             }
         },
         [unFollowUser.fulfilled]: (state, action) => {
@@ -359,7 +357,7 @@ const userSlice = createSlice({
             state.data.following.splice(index, 1);
             if (state.retreivedUser._id === action.payload.targetUserId) {
                 index = state.retreivedUser.followers.indexOf(state.data._id);
-                state.retreivedUser.followers.split(index, 1);
+                state.retreivedUser.followers.splice(index, 1);
             }
         },
         [fetchRecentlyJoinedUsers.pending]: (state) => {
@@ -372,6 +370,14 @@ const userSlice = createSlice({
         [fetchRecentlyJoinedUsers.fulfilled]: (state, action) => {
             state.recentlyJoinedUsers = action.payload.users;
             state.recentlyJoinedUsersLoading = false;
+        },
+        [updateUserInfo.pending]: (state) => {
+            state.retreivedUserLoading = true;
+        },
+        [updateUserInfo.fulfilled]: (state, action) => {
+            state.retreivedUser = action.payload.user;
+            state.data = action.payload.user;
+            state.retreivedUserLoading = false;
         },
     },
 });
