@@ -4,7 +4,7 @@ import { updateUserInfo } from "../../features/user/userSlice";
 import { useDispatch } from "react-redux";
 import ModalWrapper from "../ModalWrapper";
 import { GrClose } from "react-icons/gr";
-
+import { Label, Input } from "../../components/FormComponents";
 const EditProfileModal = ({ setShowProfileModal, user }) => {
     const [formState, setFormState] = useState({
         Name: user.name,
@@ -59,6 +59,24 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
                             <button className="whitespace-nowrap rounded-full py-2 px-4 text-white font-semibold text-sm ml-auto bg-black">
                                 Change Profile Picture
                             </button>
+                        </div>
+                        <div className="">
+                            <Label labelText="Name" id="name-label" htmlFor="edit-name" />
+                            <Input
+                                name="Name"
+                                value={formState["Name"]}
+                                callback={changeHandler}
+                                id="edit-name"
+                                ariaLabelledBy="name-label"
+                            />
+                            <Label labelText="Bio" id="bio-label" htmlFor="edit-bio" />
+                            <Input
+                                name="Bio"
+                                value={formState["Bio"]}
+                                callback={changeHandler}
+                                id="edit-bio"
+                                ariaLabelledBy="bio-label"
+                            />
                         </div>
                     </div>
                 </form>
