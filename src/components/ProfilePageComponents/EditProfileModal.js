@@ -44,8 +44,8 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
                         >
                             <GrClose onClick={() => setShowProfileModal(false)} />
                         </i>
-                        <span className="font-semibold">Edit Profile</span>
-                        <button>
+                        <span className="font-semibold ml-4">Edit Profile</span>
+                        <button type="submit" className=" rounded-full py-2 px-4 text-white font-semibold text-sm ml-auto bg-black">
                             Save
                         </button>
                     </div>
