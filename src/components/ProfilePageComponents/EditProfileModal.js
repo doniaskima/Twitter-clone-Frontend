@@ -29,6 +29,10 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
         setFormState({...formState, [name]: value });
     };
 
+    const openWidget = (e) => {
+        e.preventDefault();
+    }
+
     return ( 
         <ModalWrapper
             callback={() => setShowProfileModal(false)}
