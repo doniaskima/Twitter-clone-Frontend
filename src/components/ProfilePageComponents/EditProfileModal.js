@@ -31,6 +31,21 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
 
     const openWidget = (e) => {
         e.preventDefault();
+        window.cloudinary
+            .createUploadWidget(
+                {
+                    cloudName: "dhnq0fsnc",
+                    uploadPreset: "tebxzd0q",
+                    cropping: true,
+                },
+                (error, result) => {
+                    if (result.info?.secure_url) {
+                        console.log(result.info.secure_url);
+                        setProfileUrl(result.info.secure_url);
+                    }
+                }
+            )
+            .open();
     }
 
     return ( 
