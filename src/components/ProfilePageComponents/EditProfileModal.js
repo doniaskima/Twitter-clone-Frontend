@@ -35,7 +35,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
             .createUploadWidget(
                 {
                     cloudName: "dhnq0fsnc",
-                    uploadPreset: "tebxzd0q",
+                    uploadPreset: "doniaTwitterClone",
                     cropping: true,
                 },
                 (error, result) => {
