@@ -53,7 +53,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
             callback={() => setShowProfileModal(false)}
             ariaLabel="Edit Profile"
         >
-            <div className="bg-white rounded-md px-4 py-2 w-96 lg:w-96">
+            <div className="bg-white rounded-md px-4 py-2 w-96 lg:w-96" onClick={(e) => e.stopPropagation()}>
                 <form onSubmit={submitHandler}>
                     <div className="py-1 flex w-full text-lg items-center border-b">
                         <i
