@@ -49,6 +49,18 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
                             Save
                         </button>
                     </div>
+                    <div className="py-2 px-2 lg:px-0">
+                        <div className="flex px-5 items-center ml-auto">
+                            <img src={profileUrl}
+                                alt={user.name}
+                                loading="lazy"
+                                className="w-24 h-24 rounded-full" />
+                            
+                            <button className="whitespace-nowrap rounded-full py-2 px-4 text-white font-semibold text-sm ml-auto bg-black">
+                                Change Profile Picture
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </ModalWrapper>
