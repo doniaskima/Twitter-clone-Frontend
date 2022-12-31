@@ -36,7 +36,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
         >
             <div className="bg-white rounded-md px-4 py-2 w-96 lg:w-96">
                 <form onSubmit={submitHandler}>
-                    <div className="py-1  flex w-full text-lg items-center border-b">
+                    <div className="py-1 flex w-full text-lg items-center border-b">
                         <i
                             role="button"
                             aria-label="Close"
@@ -44,6 +44,10 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
                         >
                             <GrClose onClick={() => setShowProfileModal(false)} />
                         </i>
+                        <span className="font-semibold">Edit Profile</span>
+                        <button>
+                            Save
+                        </button>
                     </div>
                 </form>
             </div>
