@@ -6,13 +6,15 @@ import {UserPosts} from "./UserPosts";
 
 const SwitchTabComponent = ({ userId }) => {
   const [currentTab, setCurrentTab] = useState(1);
+
   return (
     <>
-      <div className="flex justify-evently border-b">
+      <div className="flex justify-evenly border-b">
         <button
           onClick={() => setCurrentTab(1)}
-          className={`py-3 px-3 hover:bg-gray-50 ${currentTab == 2 && "border-b-4 border-blue-400"
-            }`}>
+          className={`py-3 px-3 hover:bg-gray-50 ${currentTab == 1 && "border-b-4 border-blue-400"
+            }`}
+        >
           Posts
         </button>
         <button
@@ -29,7 +31,7 @@ const SwitchTabComponent = ({ userId }) => {
         >
           Following
         </button>
-     </div>
+      </div>
       <div>
         {currentTab == 1 ? (
           <UserPosts userId={userId} />
@@ -40,7 +42,7 @@ const SwitchTabComponent = ({ userId }) => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SwitchTabComponent
+export default SwitchTabComponent;
