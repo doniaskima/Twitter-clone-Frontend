@@ -22,7 +22,6 @@ const NewPost = () => {
     <div className="py-2 px-3 border">
       <form onSubmit={submitHandler}>
         <div className="flex">
-          <div className="w-12 h-10 mr-3 rounded-full bg-gray-400"></div>
           <img
             src={user.profileUrl}
             alt={user.name}
@@ -53,7 +52,7 @@ const NewPost = () => {
                   </span>
                 )}
               </div>
-              <button type="submit" className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md cursor-pointer" disabled={disableBtn}>
+              <button type="submit" className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md" disabled={disableBtn}>
                 Tweet
               </button>
             </div>

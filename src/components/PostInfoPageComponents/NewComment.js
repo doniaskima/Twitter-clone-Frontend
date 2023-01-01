@@ -9,15 +9,16 @@ export const NewComment = ({ userId, postId }) => {
   const color = comment.length > 350 ? { color: "red" } : { color: "white" };
   const disableBtn = comment === "" || comment.length > 100;
   const [showCommentLengthChip, setShowCommentLengthChip] = useState(false);
-   const dispatch = useDispatch();
-   const { name, profileUrl } = useSelector((state) => state.user.data);
-   
+  const dispatch = useDispatch();
+  const { name, profileUrl } = useSelector((state) => state.user.data);
+
   const commentHandler = (e) => {
     e.preventDefault();
     setComment("");
     dispatch(commentPost({ userId, postId, comment: comment }));
     setShowCommentLengthChip(false);
-  }
+  };
+
   return (
     <div className="border p-2 flex justify-between">
       <img
@@ -56,6 +57,5 @@ export const NewComment = ({ userId, postId }) => {
         </div>
       </form>
     </div>
-  )
-}
-
+  );
+};
