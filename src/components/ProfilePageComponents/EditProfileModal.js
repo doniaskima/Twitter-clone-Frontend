@@ -12,23 +12,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
     });
     const [profileUrl, setProfileUrl] = useState(user.profileUrl);
     const dispatch = useDispatch();
-    const submitHandler = (e) => {
-        e.preventDefault();
-        dispatch(
-            updateUserInfo({
-                name: formState["Name"],
-                Bio: formState["Bio"],
-                profileUrl: profileUrl,
-            })
-        );
-        setShowProfileModal(false);
-    };
-
-    const changeHandler = (e) => {
-        const { name, value } = e.target;
-        setFormState({...formState, [name]: value });
-    };
-
+ 
     const openWidget = (e) => {
         e.preventDefault();
         window.cloudinary
@@ -47,7 +31,25 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
             )
             .open();
     }
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(
+            updateUserInfo({
+                name: formState["Name"],
+                bio: formState["Bio"],
+                profileUrl: profileUrl,
+            })
+        );
+        setShowProfileModal(false);
+    };
 
+    const changeHandler = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        setFormState({ ...formState, [name]: value });
+    };
+
+    
     return ( 
         <ModalWrapper
             callback={() => setShowProfileModal(false)}
