@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { BASE_URL } from "../../utils/utility";
+import { BaseUrl } from "../../utils/BaseUrl";
 
 export const useSearch = (searchText) => {
   const [result, setResult] = useState([]);
@@ -21,7 +21,7 @@ export const useSearch = (searchText) => {
     if (searchText !== "") {
       setLoading(true);
       const { data } = await axios.get(
-        `${BASE_URL}/users/search?text=${searchText}`
+        `${BaseUrl}/users/search?text=${searchText}`
       );
       if (data.success) {
         setResult(data.users);
