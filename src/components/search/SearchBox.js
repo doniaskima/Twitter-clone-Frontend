@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { UserTileComponent } from "../UserTileComponent";
 import Spinner from "../Spinner";
-import { useSearch } from "./useSearch";
 import SearchField from "./SearchField";
+import { useSearch } from "./useSearch";
+
 const SearchBox = () => {
   const [searchText, setSearchText] = useState("");
   const { loading, result } = useSearch(searchText);
