@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import InitialSectionCover from "../components/MessagesPageComponents/InitialSectionCover"
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import { RiMailAddLine } from "react-icons/ri";
-import RecipientList from "../components/MessagesPageComponents/Recipientist";
+import RecipientList from "../components/MessagesPageComponents/RecipientList";
 import { useLocation , Outlet } from "react-router-dom";
 import NewMessageModal from "../components/MessagesPageComponents/NewMessageModal";
 import Toast from "../components/Toast/Toast";
