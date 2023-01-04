@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SenMessageForm = () => {
+const SendMessageForm = () => {
   return (
-    <div>SenMessageForm</div>
+    <div>SendMessageForm</div>
   )
 }
 
-export default SenMessageForm
+export default SendMessageForm

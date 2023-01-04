@@ -11,7 +11,11 @@ const Message = () => {
   return (
     <div
       className="flex w-full mb-4"
-    ></div>
+    >
+      <div>
+        
+      </div>
+    </div>
   )
 }
 
