@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { deleteMessage } from "../../features/message/messageSlice";
 import { decryptMessage, copyToClipboard } from '../../utils/BaseUrl';
-import { FaRegCopy } from "react-icons/fa";
+import { FaRegCopy, FaRegTrashAlt } from "react-icons/fa";
 
 const Message = ({ msg }) => {
   const dispatch = useDispatch();  
@@ -41,8 +41,13 @@ const Message = ({ msg }) => {
               <FaRegCopy />
             </i>
 
-            <i>
-              
+            <i 
+              aria-label="Delete Message"
+              role="button"
+              className="text-red-700"
+              onClick={()=>}
+            >
+              <FaRegTrashAlt />
             </i>
           </div>
       }
