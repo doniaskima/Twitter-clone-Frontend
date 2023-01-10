@@ -10,8 +10,9 @@ const Message = ({msg}) => {
   const timestamp = dayjs(msg.createdAt).format("MMM D, YYYY, h:mm a");
   const dispatch = useDispatch();  
   const messageByUser = msg.sender._id === id;
-  const decryptedMessage = decryptMessage(msg.key,msg.message,msg.iv);
+  const decryptedMessage = decryptMessage(msg.key, msg.message, msg.iv);
   const [showOptions, setShowOptions] = useState(false);
+
   return (
     <div
       className="flex w-full mb-4"
@@ -21,8 +22,12 @@ const Message = ({msg}) => {
       <div
         className={`message-base-style` ${messageByUser} ? "message-sender-style" : "message-receiver-style"}
       >
-       {decryptedMessage}
-      </div>
+      {decryptedMessage}
+      <p className="text-black right-0 text-xs">
+        {timestamp}
+      </p>
+    </div>
+    
     </div>
   )
 }
