@@ -20,7 +20,7 @@ const Message = ({msg}) => {
       onMouseLeave={() => setShowOptions(false)}
     >
       <div
-        className={`message-base-style` ${messageByUser} ? "message-sender-style" : "message-receiver-style"}
+        className={`mb-3 whitespace-nowrap py-2 px-3 relative` ${messageByUser} ? "ml-auto bg-blue-400 text-white rounded-br-none rounded-3xl" : "mr-auto rounded-bl-none rounded-3xl bg-slate"}
       >
       {decryptedMessage}
       <p className="text-black right-0 text-xs">
