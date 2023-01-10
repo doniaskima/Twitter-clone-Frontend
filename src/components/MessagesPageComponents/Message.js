@@ -6,10 +6,10 @@ import { deleteMessage } from "../../features/message/messageSlice";
 import { decryptMessage, copyToClipboard } from '../../utils/BaseUrl';
 import { FaRegCopy } from "react-icons/fa";
 
-const Message = ({msg}) => {
+const Message = ({ msg }) => {
+  const dispatch = useDispatch();  
   const { _id: id } = useSelector((state) => state.user.data);
   const timestamp = dayjs(msg.createdAt).format("MMM D, YYYY, h:mm a");
-  const dispatch = useDispatch();  
   const messageByUser = msg.sender._id === id;
   const decryptedMessage = decryptMessage(msg.key, msg.message, msg.iv);
   const [showOptions, setShowOptions] = useState(false);
@@ -29,7 +29,9 @@ const Message = ({msg}) => {
       </p>
       {
         showOptions && 
-        <div>
+        <div
+          aria-label="Message Options"
+          >
             <i
               role="button"
               aria-label="Copy message"
@@ -37,6 +39,10 @@ const Message = ({msg}) => {
               onClick={() => copyToClipboard(decryptedMessage)}
             >
               <FaRegCopy />
+            </i>
+
+            <i>
+              
             </i>
           </div>
       }
