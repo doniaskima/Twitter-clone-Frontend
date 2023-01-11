@@ -31,6 +31,7 @@ const Message = ({ msg }) => {
         showOptions && 
         <div
           aria-label="Message Options"
+          className={`absolute text-black fleex border ${messageByUser} ? "-left-14" : "-right-14`}
           >
             <i
               role="button"
@@ -45,7 +46,7 @@ const Message = ({ msg }) => {
               aria-label="Delete Message"
               role="button"
               className="text-red-700"
-              onClick={()=>}
+              onClick={()=> dispatch(deleteMessage({ messageId: msg.messageId }))}
             >
               <FaRegTrashAlt />
             </i>
