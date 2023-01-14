@@ -21,8 +21,7 @@ const Messages = () => {
   useEffect(() => {
     socket.emit("connectUser", { name: user.name });
   }, []);
-
-  return (
+ return (
     <div className="flex h-screen bg-white">
       <SideNavigationBar />
       <div className="flex ml-0 md:ml-28 lg:ml-0 w-full">
@@ -47,14 +46,15 @@ const Messages = () => {
             setShowNewMessageModal={setShowNewMessageModal}
           />
         )}
-        
+        <Outlet />
       </div>
       {showNewMessageModal && (
         <NewMessageModal setShowNewMessageModal={setShowNewMessageModal} />
       )}
-       
+      <Toast />
     </div>
   );
 };
+
 
 export default Messages;
