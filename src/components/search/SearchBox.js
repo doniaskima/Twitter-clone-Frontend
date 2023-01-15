@@ -14,6 +14,7 @@ const SearchBox = () => {
       setShowDropDown(false);
     }
   };
+  
   return (
     <div className="w-full mt-2">
       <SearchField

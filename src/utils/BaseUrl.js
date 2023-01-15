@@ -1,15 +1,12 @@
 import crypto from "crypto-js";
 import { toast } from "react-toastify";
-export const BaseUrl = "https://twitter-clone-backend.onrender.com";
-
-
+export const BaseUrl = "http://localhost:3000";
 
 export function validateEmail(email) {
     return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
         email
     );
 }
-
 
 export const decryptMessage = (key, message, iv) => {
     let _key = crypto.enc.Hex.parse(key);
