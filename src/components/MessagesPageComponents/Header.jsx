@@ -1,5 +1,5 @@
 import { BiArrowBack } from "react-icons/bi";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { FaEllipsisV } from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

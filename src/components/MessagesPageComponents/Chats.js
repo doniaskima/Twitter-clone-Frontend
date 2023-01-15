@@ -13,8 +13,8 @@ const Chats = () => {
   const { _id: userId } = useSelector((state) => state.user.data);
   const { messages, loadingMessages } = useSelector((state) => state.message);
   const { id } = useParams();
-  const socket = useSocket();
   const dispatch = useDispatch();
+  const socket = useSocket();
 
   const socketNewMessageCallback = (info) => {
     dispatch(newMessage(info));
@@ -31,7 +31,8 @@ const Chats = () => {
   }, [id]);
 
   return (
-    <div className="fixed flex flex-col bg-white lg:static border w-full md:w-17/20 lg:max-w-xl">
+    <div className="fixed flex flex-col bg-white lg:static border w-full md:w-17/20 h-full lg:max-w-xl">
+      <Header recipient={recipient} />
       {
         loadingMessages ? (
           <div className="flex justify-center mt-2 ">
