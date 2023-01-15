@@ -34,7 +34,7 @@ const Chats = () => {
     <div className="fixed flex flex-col bg-white lg:static border w-full md:w-17/20 lg:max-w-xl">
       {
         loadingMessages ? (
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-2 ">
             <Spinner/>
           </div>
         ) : (
