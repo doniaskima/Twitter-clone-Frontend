@@ -3,11 +3,11 @@ import { useState } from "react";
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import SearchField from "../components/search/SearchField";
 import Spinner from "../components/Spinner";
-import { UserTileComponent } from "../components/UserTileComponent";
+import { UserTileComponent } from "../components/HomePageComponents/UserTileComponent";
 import { useSearch } from "../components/search/useSearch";
 
 const Explore = () => {
-  const [searchText,setSearchText]=useState("")
+  const [searchText, setSearchText] = useState("")
   const { loading, result } = useSearch(searchText);
   return (
     <div className="flex h-screen bg-white">

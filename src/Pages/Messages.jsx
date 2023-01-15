@@ -9,14 +9,11 @@ import NewMessageModal from "../components/MessagesPageComponents/NewMessageModa
 import Toast from "../components/Toast/Toast";
 import { useSocket } from "../SocketContext/socketContext";
 
-
 const Messages = () => {
   const user = useSelector((state) => state.user.data);
   const [showNewMessageModal, setShowNewMessageModal] = useState(false);
   const socket = useSocket();
   const { pathname } = useLocation();
-
-  
 
   useEffect(() => {
     socket.emit("connectUser", { name: user.name });
