@@ -4,7 +4,7 @@ import { fetchPostLikes } from "../../features/post/postSlice";
 import { GrClose } from "react-icons/gr";
 import Spinner from "../Spinner";
 import ModalWrapper from "../ModalWrapper";
-import { UserTileComponent } from "../UserTileComponent";
+import { UserTileComponent } from "../HomePageComponents/UserTileComponent";
 export const LikesModal = ({ postId, setShowModal }) => {
     const { likes, loadingLikes, errMessage } = useSelector(
         (state) => state.post

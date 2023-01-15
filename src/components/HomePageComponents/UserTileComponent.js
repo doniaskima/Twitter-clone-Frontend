@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {followUser,unFollowUser}  from "../features/user/userSlice.js"
+import {followUser,unFollowUser}  from "../../features/user/userSlice"
 
 
 export const UserTileComponent = ({ user }) => {

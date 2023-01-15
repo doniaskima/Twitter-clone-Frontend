@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserTileComponent } from "../UserTileComponent";
+import UserTileComponent from "../HomePageComponents/UserTileComponent";
 import Spinner from "../Spinner";
 import SearchField from "./SearchField";
 import { useSearch } from "./useSearch";
