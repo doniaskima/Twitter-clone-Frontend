@@ -1,18 +1,17 @@
-import React from 'react'
-import {useDispatch ,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { decryptMessage, copyToClipboard } from "../../utils/BaseUrl";
 import dayjs from "dayjs";
+import { FaRegTrashAlt, FaRegCopy } from "react-icons/fa";
 import { useState } from "react";
 import { deleteMessage } from "../../features/message/messageSlice";
-import { decryptMessage, copyToClipboard } from '../../utils/BaseUrl';
-import { FaRegCopy, FaRegTrashAlt } from "react-icons/fa";
 
 const Message = ({ msg }) => {
-  const dispatch = useDispatch();  
   const { _id: id } = useSelector((state) => state.user.data);
-  const timestamp = dayjs(msg.createdAt).format("MMM D, YYYY, h:mm a");
   const messageByUser = msg.sender._id === id;
-  const decryptedMessage = decryptMessage(msg.key, msg.message, msg.iv);
+  const timestamp = dayjs(msg.createdAt).format("MMM D, YYYY, h:mm a");
   const [showOptions, setShowOptions] = useState(false);
+  const decryptedMessage = decryptMessage(msg.key, msg.message, msg.iv);
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -21,7 +20,7 @@ const Message = ({ msg }) => {
       onMouseLeave={() => setShowOptions(false)}
     >
       <div
-        className={`mb-3 whitespace-nowrap py-2 px-3 relative ${messageByUser ? "ml-auto bg-blue-400 text-white rounded-br-none rounded-3xl" : "mr-auto rounded-bl-none rounded-3xl bg-slate"
+        className={` mb-3 whitespace-nowrap py-2 px-3 relative ${messageByUser ? "ml-auto bg-blue-400 text-white rounded-br-none rounded-3xl" : "mr-auto rounded-bl-none rounded-3xl bg-slate"
           }`}
       >
         {decryptedMessage}
@@ -60,4 +59,3 @@ const Message = ({ msg }) => {
 };
 
 export default Message;
- 

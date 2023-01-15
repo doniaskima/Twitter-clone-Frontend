@@ -1,9 +1,43 @@
-import React from 'react'
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useSocket } from "../../SocketContext/socketContext";
 
-const SendMessageForm = () => {
+const SendMessageForm = ({ recipient }) => {
+  const [text, setText] = useState("");
+  const socket = useSocket();
+  const { _id, name, email, username } = useSelector(
+    (state) => state.user.data
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setText("");
+
+    socket.emit("sendMessage", {
+      sender: { _id, name, email, username },
+      receiver: recipient,
+      message: text,
+    });
+  };
+
   return (
-    <div>SendMessageForm</div>
-  )
-}
+    <form
+      className="flex mt-auto py-3 px-2 border space-x-2"
+      onSubmit={handleSubmit}
+    >
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        aria-label="Your Message"
+        placeholder="Your Message"
+        className="rounded-full px-2 py-1 border-2 w-full outline-none"
+      />
+      <button
+        className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md" type="submit" disabled={text === ""}>
+        Send
+      </button>
+    </form>
+  );
+};
 
-export default SendMessageForm
+export default SendMessageForm;

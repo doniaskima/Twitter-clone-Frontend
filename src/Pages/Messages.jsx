@@ -15,10 +15,13 @@ const Messages = () => {
   const socket = useSocket();
   const { pathname } = useLocation();
 
+ 
+
   useEffect(() => {
     socket.emit("connectUser", { name: user.name });
   }, []);
- return (
+
+  return (
     <div className="flex h-screen bg-white">
       <SideNavigationBar />
       <div className="flex ml-0 md:ml-28 lg:ml-0 w-full">

@@ -14,6 +14,7 @@ import Signup from "./Pages/Signup";
 import Notification from "./Pages/Notification";
 import PostInfo from "./Pages/PostInfo";
 import Messages from "./Pages/Messages";
+import Chats from "./components/MessagesPageComponents/Chats"
 import Explore from "./Pages/Explore";
 import Profile from "./Pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
@@ -46,7 +47,9 @@ function App() {
             <Route path="/profile/:userId" element={<Profile />} />
           </Route>
           <Route path="/messages" element={<PrivateRoute />}>
-            <Route path="/messages" element={<Messages />} />
+            <Route path="/messages" element={<Messages />}>
+              <Route path=":id" element={<Chats />} />
+            </Route>
           </Route>
           <Route path="/post/:postId" element={<PrivateRoute />}>
             <Route path="/post/:postId" element={<PostInfo />} />
