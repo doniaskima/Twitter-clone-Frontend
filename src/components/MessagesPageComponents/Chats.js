@@ -39,7 +39,7 @@ const Chats = () => {
             <Spinner/>
           </div>
         ) : (
-          <div className="pt-4 px-2 h-full overflow-auto">
+          <div className="pt-4 px-4 h-full overflow-auto">
             {messages.map((msg) => {
               return <Message key={msg.messageId} msg={msg} />;
             })}
