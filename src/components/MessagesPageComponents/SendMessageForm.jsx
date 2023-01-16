@@ -29,12 +29,10 @@ const SendMessageForm = ({ recipient }) => {
       className="relative  flex mt-auto py-3 px-2 border space-x-2"
       onSubmit={handleSubmit}
     >
-      <button
+      <BsEmojiSmile
         onClick={() => setShowEmojis(!showEmojis)}
-        className="space-x-4 font-semibold mt-2 text-lg cursor-pointer  ">
-        <BsEmojiSmile
-  />
-      </button>
+        className="space-x-4 font-semibold mt-1 cursor-pointer w-8 h-8 " />
+  
       {showEmojis && (
         <div
           className="absolute
@@ -45,7 +43,7 @@ const SendMessageForm = ({ recipient }) => {
               <div
                 className="p-1 cursor-pointer"
                 key={index}
-                onClick={() => setText(text + emoji)}
+                onClick={() => setText(text +" "+ emoji)}
               >
                 {emoji}
               </div>
