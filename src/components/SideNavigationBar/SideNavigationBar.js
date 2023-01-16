@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../assets/logo.png";
 import { logoutUser } from "../../features/user/userSlice";
 import SideBarNavLink from "./SideBarNavLink";
+import { Link } from "react-router-dom";
 
 const SideNavigationBar = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ const SideNavigationBar = () => {
       <div className="w-full md:w-auto flex md:flex-col justify-between md:h-full md:px-4 md:fixed">
         <div className="flex w-full md:w-auto md:flex-col md:mt-2 md:mr-4">
           <div className="hidden md:flex md:justify-center lg:justify-start">
-            <img src={Logo} className="w-12" />
+            <Link to="/home">
+              <img src={Logo} className="w-12" />
+            </Link> 
           </div>
           <div className="w-full py-2 md:p-0 md:mt-2 md:mb-4 font-medium">
             <nav
