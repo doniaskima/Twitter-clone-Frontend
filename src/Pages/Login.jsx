@@ -23,13 +23,13 @@ const Login = () => {
       })
     );
     if (meta.requestStatus === "fulfilled") {
-      navigate("home");
+      navigate("/home");
     }
 
   };
   return (
     <>
-      {isUserLoggedIn && <Navigate to="home" replace />}
+      {isUserLoggedIn && <Navigate to="/home" replace />}
       <div className="h-screen flex justify-center">
         <div className="text-center mt-28"> 
           <div className="flex justify-center">
