@@ -1,8 +1,7 @@
-import React from 'react'
-import {useState} from "react";
+import { useState } from "react";
 import Followers from "./Followers";
 import Following from "./Following";
-import {UserPosts} from "./UserPosts";
+import { UserPosts } from "./UserPosts";
 
 const SwitchTabComponent = ({ userId }) => {
   const [currentTab, setCurrentTab] = useState(1);

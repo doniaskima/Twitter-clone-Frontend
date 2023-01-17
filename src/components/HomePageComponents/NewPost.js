@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../features/post/postSlice";
+import { BsEmojiSmile } from "react-icons/bs";
+const emojis = require("emojis-list").slice(301);
 
 const NewPost = () => {
   const [content, setContent] = useState("");
@@ -52,6 +54,8 @@ const NewPost = () => {
                   </span>
                 )}
               </div>
+           
+
               <button type="submit" className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md" disabled={disableBtn}>
                 Tweet
               </button>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useSocket } from "../../SocketContext/socketContext";
 import {BsEmojiSmile}  from "react-icons/bs";
-import { FaEllipsisV } from "react-icons/fa";
 const emojis = require("emojis-list").slice(301);
 
 const SendMessageForm = ({ recipient }) => {

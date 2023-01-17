@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserFollowing } from "../../features/user/userSlice";
 import Spinner from "../Spinner";
-
-import UserTileComponent from "../HomePageComponents/UserTileComponent";
-
+import { UserTileComponent } from "../HomePageComponents/UserTileComponent";
 
 const Following = ({ userId }) => {
   const {
