@@ -31,7 +31,7 @@ const Login = () => {
     <>
       {isUserLoggedIn && <Navigate to="home" replace />}
       <div className="h-screen flex justify-center">
-        <div className="text-center mt-40">
+        <div className="text-center mt-28"> 
           <div className="flex justify-center">
             <img className="w-16 mb-4" src={LogoTwitter} alt="LogoTwitter" />
           </div>

@@ -21,6 +21,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useDispatch } from "react-redux";
 import { setUserFromLocalStorage } from "./features/user/userSlice";
 import { socket, SocketContext } from "./SocketContext/socketContext";
+import LoginSignupPage from "./Pages/LoginSignupPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ function App() {
     <SocketContext.Provider value={socket}>
       <div className="App h-screen">
         <Routes>
-          <Route path="/" element={<Login />} />
+          
+          <Route path="/" element={<LoginSignupPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<PrivateRoute />}>
             <Route path="/home" element={<Home />} />
