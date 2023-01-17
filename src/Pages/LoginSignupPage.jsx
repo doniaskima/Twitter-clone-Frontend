@@ -22,11 +22,11 @@ const LoginSignupPage = () => {
                 </div>
                 <div className="flex lg:flex-col md:flex-row-reverse">
                     <div className="">
-                        <img src={Logo} alt="cute twitter" className="w-24 w-36  lg:mt-12 lg:ml-8 ml-4" />
+                        <img src={Logo} alt="cute twitter" className="w-24 w-36  lg:mt-12 lg:ml-8  " />
                     </div>
                     <div className="flex justify-center flex-col">
-                        <h1 className="font-semibold lg:text-7xl text-4xl  lg:ml-12 mt-4">Happening now</h1>
-                        <h2 className="font-medium lg:text-4xl text-2xl lg:ml-12 mt-7">Join Twitter today.</h2>
+                        <h1 className="font-semibold lg:text-7xl text-3xl  lg:ml-12 mt-4">Happening now</h1>
+                        <h2 className="font-medium lg:text-4xl text-xl lg:ml-12 mt-7">Join Twitter today.</h2>
                         <div className="flex flex-col lg:gap-8 gap-4 justify-center lg:ml-24 mt-8">
                             <div>
                                 <button
@@ -38,7 +38,7 @@ const LoginSignupPage = () => {
                             <div>
                                 <button
                                     onClick={() => navigate("/Login")}
-                                    type="submit" className="bg-blue-500 text-white font-semibold lg:px-24 lg:py-4 px-16 py-4 rounded-full shadow-md" >
+                                    type="submit" className="bg-blue-500 text-white font-semibold lg:px-24 lg:py-4 px-16 py-4 rounded-full shadow-md  " >
                                     Log in
                                 </button>
                             </div>
