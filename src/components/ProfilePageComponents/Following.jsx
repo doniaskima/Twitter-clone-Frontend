@@ -1,9 +1,44 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserFollowing } from "../../features/user/userSlice";
+import Spinner from "../Spinner";
 
-const Following = () => {
+import { UserTileComponent } from "../HomePageComponents/UserTileComponent";
+
+
+const Following = ({ userId }) => {
+  const {
+    data: { _id: clientId },
+    retreivedUser: { following },
+    profileTabsFetching,
+    errorMessage,
+  } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserFollowing({ userId, clientId }));
+  }, []);
+
   return (
-    <div>Following</div>
-  )
-}
+    <div className="mt-2">
+      {following.length != 0 && !profileTabsFetching && errorMessage && (
+        <div className="text-center">{errorMessage}</div>
+      )}
+      {following.length == 0 && !profileTabsFetching && (
+        <div className="text-center">No Following</div>
+      )}
+      {profileTabsFetching ? (
+        <div className="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+        following.map((user) => {
+          return <UserTileComponent key={user._id} user={user} />;
+        })
+      )}
+    </div>
+  );
+};
 
-export default Following
+export default Following;

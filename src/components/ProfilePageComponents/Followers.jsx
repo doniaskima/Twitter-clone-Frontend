@@ -1,9 +1,17 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserFollowers } from "../../features/user/userSlice";
+import Spinner from "../Spinner";
+ 
 
-const Followers = () => {
+const Followers = ({ userId }) => {
+   
+
   return (
-    <div>Followers</div>
-  )
-}
+    <div className="mt-2">
+            Hello
+    </div>
+  );
+};
 
-export default Followers
+export default Followers;
