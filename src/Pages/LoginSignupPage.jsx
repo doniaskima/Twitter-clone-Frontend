@@ -37,7 +37,7 @@ const LoginSignupPage = () => {
                             </div>
                             <div>
                                 <button
-                                    onClick={() => navigate("/Login")}
+                                    onClick={() => navigate("/login")}
                                     type="submit" className="bg-blue-500 text-white font-semibold lg:px-24 lg:py-4 px-16 py-4 rounded-full shadow-md  " >
                                     Log in
                                 </button>

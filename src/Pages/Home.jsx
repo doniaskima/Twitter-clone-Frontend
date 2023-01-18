@@ -9,7 +9,7 @@ import { RecentlyJoinedUsers } from "../components/HomePageComponents/RecentlyJo
 import SearchBox from "../components/search/SearchBox";
 import { FaSignOutAlt } from "react-icons/fa";
 
-export const Home = () => {
+const Home = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.data._id);
   const { feed } = useSelector((state) => state.post);
@@ -47,3 +47,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home

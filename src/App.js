@@ -1,67 +1,64 @@
-import { useEffect } from "react";
-import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {
-  Home,
-  // Login,
-  // Notification,
-  // Signup,
-  // Profile,
-  // Messages,
-  // PostInfo,
-} from "./Pages/index";
+import React, { useEffect, Suspense } from "react";
+import { useDispatch } from "react-redux";
+import PrivateRoute from "./components/PrivateRoute";
+import { setUserFromLocalStorage } from "./features/user/userSlice";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-import Notification from "./Pages/Notification";
-import PostInfo from "./Pages/PostInfo";
-import Messages from "./Pages/Messages";
-import Chats from "./components/MessagesPageComponents/Chats"
-import Explore from "./Pages/Explore";
-import Profile from "./Pages/Profile";
-import PrivateRoute from "./components/PrivateRoute";
-import { useDispatch } from "react-redux";
-import { setUserFromLocalStorage } from "./features/user/userSlice";
+import { Route, Routes } from "react-router-dom";
 import { socket, SocketContext } from "./SocketContext/socketContext";
-import LoginSignupPage from "./Pages/LoginSignupPage";
+import LoadingPage from "./components/LoadingPage";
+import LoginSignupPage from "./Pages/LoginSignupPage"
+const Home = React.lazy(() => import("./Pages/Home"));
+const Explore = React.lazy(() => import("./Pages/Explore"));
+const Profile = React.lazy(() => import("./Pages/Profile"));
+const Messages = React.lazy(() => import("./Pages/Messages"));
+const PostInfo = React.lazy(() => import("./Pages/PostInfo"));
+const Notification = React.lazy(() => import("./Pages/Notification"));
+
+const Chats = React.lazy(() =>
+  import("./components/MessagesPageComponents/Chats")
+);
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setUserFromLocalStorage);
+    dispatch(setUserFromLocalStorage());
   }, []);
 
   return (
     <SocketContext.Provider value={socket}>
-      <div className="App h-screen">
-        <Routes>
-          
-          <Route path="/" element={<LoginSignupPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/home" element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
-          </Route>
-          <Route path="/explore" element={<PrivateRoute />}>
-            <Route path="/explore" element={<Explore />} />
-          </Route>
-          <Route path="/notifications" element={<PrivateRoute />}>
-            <Route path="/notifications" element={<Notification />} />
-          </Route>
-          <Route path="/profile/:userId" element={<PrivateRoute />}>
-            <Route path="/profile/:userId" element={<Profile />} />
-          </Route>
-          <Route path="/messages" element={<PrivateRoute />}>
-            <Route path="/messages" element={<Messages />}>
-              <Route path=":id" element={<Chats />} />
+      <Suspense fallback={<LoadingPage />}>
+        <div className="App h-screen">
+          <Routes>
+            <Route path="/" element={<LoginSignupPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/home" element={<PrivateRoute />}>
+              <Route path="/home" element={<Home />} />
             </Route>
-          </Route>
-          <Route path="/post/:postId" element={<PrivateRoute />}>
-            <Route path="/post/:postId" element={<PostInfo />} />
-          </Route>
-        </Routes>
-      </div>
+            <Route path="/explore" element={<PrivateRoute />}>
+              <Route path="/explore" element={<Explore />} />
+            </Route>
+            <Route path="/notifications" element={<PrivateRoute />}>
+              <Route path="/notifications" element={<Notification />} />
+            </Route>
+            <Route path="/profile/:userId" element={<PrivateRoute />}>
+              <Route path="/profile/:userId" element={<Profile />} />
+            </Route>
+            <Route path="/messages" element={<PrivateRoute />}>
+              <Route path="/messages" element={<Messages />}>
+                <Route path=":id" element={<Chats />} />
+              </Route>
+            </Route>
+            <Route path="/post/:postId" element={<PrivateRoute />}>
+              <Route path="/post/:postId" element={<PostInfo />} />
+            </Route>
+          </Routes>
+        </div>
+      </Suspense>
     </SocketContext.Provider>
   );
-
 }
 
 export default App;
+
