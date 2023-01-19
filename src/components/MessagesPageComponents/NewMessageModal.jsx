@@ -87,7 +87,7 @@ const NewMessageModal = ({ setShowNewMessageModal }) => {
         </div>
         <button
           onClick={handleStart}
-          className="button mt-auto ml-auto"
+          className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md mt-auto ml-auto"
           disabled={!searchText.trim().length}
         >
           Start
