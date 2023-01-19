@@ -1,10 +1,11 @@
-
 import { useState } from "react";
 import { updateUserInfo } from "../../features/user/userSlice";
 import { useDispatch } from "react-redux";
 import ModalWrapper from "../ModalWrapper";
 import { GrClose } from "react-icons/gr";
 import { Label, Input } from "../../components/FormComponents";
+
+
 const EditProfileModal = ({ setShowProfileModal, user }) => {
     const [formState, setFormState] = useState({
         Name: user.name,
@@ -12,7 +13,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
     });
     const [profileUrl, setProfileUrl] = useState(user.profileUrl);
     const dispatch = useDispatch();
- 
+
     const openWidget = (e) => {
         e.preventDefault();
         window.cloudinary
@@ -31,6 +32,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
             )
             .open();
     }
+    
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(
@@ -43,14 +45,24 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
         setShowProfileModal(false);
     };
 
-    const changeHandler = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        setFormState({ ...formState, [name]: value });
-    };
+    // const changeHandler = (e) => {
+    //     e.preventDefault();
+    //     const { name, value } = e.target;
+    //     setFormState({ ...formState, [name]: value });
 
-    
-    return ( 
+    // };
+    const changeHandler = (event) => {
+        event.preventDefault();
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setFormState({
+            [name]: value
+        });
+    }
+
+
+    return (
         <ModalWrapper
             callback={() => setShowProfileModal(false)}
             ariaLabel="Edit Profile"
@@ -76,8 +88,8 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
                                 alt={user.name}
                                 loading="lazy"
                                 className="w-24 h-24 rounded-full" />
-                            
-                            <button 
+
+                            <button
                                 onClick={openWidget}
                                 className="whitespace-nowrap rounded-full py-2 px-4 text-white font-semibold text-sm ml-auto bg-black">
                                 Change Profile Picture
