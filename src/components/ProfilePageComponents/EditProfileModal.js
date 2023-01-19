@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import ModalWrapper from "../ModalWrapper";
 import { GrClose } from "react-icons/gr";
 import { Label, Input } from "../../components/FormComponents";
+import { createSerializableStateInvariantMiddleware } from "@reduxjs/toolkit";
 
 
 const EditProfileModal = ({ setShowProfileModal, user }) => {
@@ -11,6 +12,8 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
         Name: user.name,
         Bio: user.bio,
     });
+    const [name, setName] = useState(user.name);
+    const [bio, setBio] = useState(user.bio)
     const [profileUrl, setProfileUrl] = useState(user.profileUrl);
     const dispatch = useDispatch();
 
@@ -37,20 +40,14 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
         e.preventDefault();
         dispatch(
             updateUserInfo({
-                name: formState["Name"],
-                bio: formState["Bio"],
+                name: name,
+                bio: bio,
                 profileUrl: profileUrl,
             })
         );
         setShowProfileModal(false);
     };
 
-    const changeHandler = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        setFormState({ ...formState, [name]: value });
-
-    };
 
     return (
         <ModalWrapper
@@ -87,20 +84,28 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
                         </div>
                         <div className="">
                             <Label labelText="Name" id="name-label" htmlFor="edit-name" />
-                            <Input
+                            <input
                                 name="Name"
-                                value={formState["Name"]}
-                                callback={changeHandler}
+                                value={name}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setName(e.target.value);
+                               }}
                                 id="edit-name"
                                 ariaLabelledBy="name-label"
+                                className="border-2 border-gray-400 rounded-md w-full p-2 my-2 font-sans"
                             />
                             <Label labelText="Bio" id="bio-label" htmlFor="edit-bio" />
-                            <Input
-                                name="Bio"
-                                value={formState["Bio"]}
-                                callback={changeHandler}
-                                id="edit-bio"
-                                ariaLabelledBy="bio-label"
+                            <input
+                                name="Name"
+                                value={bio}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setBio(e.target.value);
+                                }}
+                                id="edit-name"
+                                ariaLabelledBy="name-label"
+                                className="border-2 border-gray-400 rounded-md w-full p-2 my-2 font-sans"
                             />
                         </div>
                     </div>
