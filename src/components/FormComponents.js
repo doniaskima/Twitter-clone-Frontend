@@ -6,7 +6,7 @@ export const Input = ({ callback, value, placeholder, id, ariaLabelledBy }) => {
       value={value}
       id={id}
       type="text"
-      className="border-2 border-gray-400 rounded-md w-full p-2 my-2"
+      className="border-2 border-gray-400 rounded-md w-full p-2 my-2 font-sans"
       aria-labelledby={ariaLabelledBy}
     />
   );
@@ -14,7 +14,7 @@ export const Input = ({ callback, value, placeholder, id, ariaLabelledBy }) => {
 
 export const Label = ({ labelText, htmlFor, id }) => {
   return (
-    <label htmlFor={htmlFor} className="font-semibold" id={id}>
+    <label htmlFor={htmlFor} className="font-semibold font-sans" id={id}>
       {labelText}
     </label>
   );

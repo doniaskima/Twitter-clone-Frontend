@@ -5,11 +5,11 @@ import { validateEmail } from "../utils/BaseUrl";
 import { Input, Label } from "../components/FormComponents";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { signupUserAsync } from "../features/user/userSlice";
-
+import Twittercute from "../assets/Twittercute.png";
 
 const Signup = () => {
-   
-  const [name,setName]=useState("");
+
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,31 +64,34 @@ const Signup = () => {
       navigate("/home");
     }
   }
-   return (
-     <div className="h-screen flex justify-center  ">
-       <div className="text-center mt-14">
-         <h1 className="text-5xl font-semibold mb-4">
-           Twitter
-         </h1>
-         {error !== "" && (
-           <p className="text-red-600 font-meduim max-w-sm">{error}</p>
-         )}
-         {errorMessage !== "" && (
-           <p className="text-red-600 font-medium max-w-sm">{errorMessage}</p>
-         )}
+  return (
+    <div className="h-screen flex justify-center bg-gradient-to-r from-blue-500 to-purple-700 z-1 filter ">
+      <div className="text-center mt-4">
+        <div className="flex justify-center">
+          <img className="w-16 mb-4" src={Twittercute} alt="LogoTwitter" />
+        </div>
+        <h1 className="text-4xl font-semibold mb-4 font-mono text-white">
+          Join Twitter today
+        </h1>
+        {error !== "" && (
+          <p className="text-red-600 font-meduim max-w-sm">{error}</p>
+        )}
+        {errorMessage !== "" && (
+          <p className="text-red-600 font-medium max-w-sm">{errorMessage}</p>
+        )}
 
-         <div className="bg-gray-200 p-4 text-left rounded-md mt-2 shadow-lg">
-           <form onSubmit={signupHandler}>
-             <div>
-               <Label htmlFor="name" labelText="Name" id="name-input-title"></Label>
-               <Input
-                 value={name}
+        <div className="bg-white p-4 text-left rounded-xl mt-1 shadow-lg">
+          <form onSubmit={signupHandler}>
+            <div>
+              <Label htmlFor="name" labelText="Name" id="name-input-title"></Label>
+              <Input
+                value={name}
                 id="name"
                 placeholder="Name"
                 ariaLabelledBy="name-input-title"
-                callback={setName}/>
-             </div>
-             <div>
+                callback={setName} />
+            </div>
+            <div>
               <Label
                 htmlFor="username"
                 labelText="Username"
@@ -101,8 +104,8 @@ const Signup = () => {
                 value={username}
                 callback={setUsername}
               />
-             </div>
-             <div>
+            </div>
+            <div>
               <Label htmlFor="email" labelText="Email" id="email-input-title" />
               <Input
                 callback={setEmail}
@@ -111,8 +114,8 @@ const Signup = () => {
                 id="email"
                 ariaLabelledBy="email-input-title"
               />
-             </div>
-             <div>
+            </div>
+            <div>
               <Label
                 htmlFor="password"
                 id="password-input-title"
@@ -142,8 +145,8 @@ const Signup = () => {
                   />
                 )}
               </div>
-             </div>
-             <div>
+            </div>
+            <div>
               <Label
                 htmlFor="confirmPassword"
                 id="confirmPassword-input-title"
@@ -156,8 +159,8 @@ const Signup = () => {
                 value={confirmPassword}
                 callback={setConfirmPassword}
               />
-             </div>
-             <div className="flex justify-center">
+            </div>
+            <div className="flex justify-center">
               <button
                 type="submit"
                 className="bg-blue-500 text-white px-3 py-2 rounded-md mt-2 w-36 font-semibold shadow-md"
@@ -165,12 +168,12 @@ const Signup = () => {
                 {!loading ? "Signup" : "Signing In..."}
               </button>
             </div>
-             
-           </form>
-         </div>
-       </div>
-     </div>
-   )
- }
- 
- export default Signup
+
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Signup

@@ -4,7 +4,8 @@ import { Input, Label } from "../components/FormComponents";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUserAsync } from "../features/user/userSlice";
-import LogoTwitter from "../assets/logo.png";
+import Twittercute from "../assets/Twittercute.png";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,16 +31,16 @@ const Login = () => {
   return (
     <>
       {isUserLoggedIn && <Navigate to="/home" replace />}
-      <div className="h-screen flex justify-center">
+      <div className="h-screen flex justify-center bg-gradient-to-r from-blue-500 to-purple-700 z-1 filter">
         <div className="text-center mt-28"> 
           <div className="flex justify-center">
-            <img className="w-16 mb-4" src={LogoTwitter} alt="LogoTwitter" />
+            <img className="w-16 mb-4" src={Twittercute} alt="LogoTwitter" />
           </div>
-          <h1 className="text-4xl font-semibold mb-8">Log in to Twitter </h1>
+          <h1 className="text-4xl text-white font-semibold mb-8 font-mono">Log in to Twitter </h1>
           {errorMessage !== "" && (
             <p className="text-red-600 font-medium max-w-sm">{errorMessage}</p>
           )}
-          <div className="text-left shadow-lg w-96 p-4 bg-gray-200 rounded-md mt-2">
+          <div className="text-left shadow-lg w-96 p-4 bg-white rounded-xl mt-2">
             <form onSubmit={loginHandler}>
               <div className="">
                 <Label htmlFor="email" labelText="Email" id="email-input-title" />
@@ -95,7 +96,7 @@ const Login = () => {
             </form>
             <div className="text-center mt-4">
               <p className="font-normal">
-                Dont have an account?{" "}<Link to="/signup">Sign Up!</Link>
+                Dont have an account?{" "}<Link className=" font-bold" to="/signup">Sign Up!</Link>
               </p>
             </div>
           </div>
