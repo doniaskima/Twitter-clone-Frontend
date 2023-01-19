@@ -80,14 +80,14 @@ const PostInfo = () => {
                       {isPostOwnedByUser && (
                         <span className="text-gray-400 text-sm float-right">
                           <button
-                            className="small-button"
+                              className="ml-3 border-2 font-medium rounded-full px-2 py-1 hover:text-black hover:border-black"
                             onClick={() => setShowEditPost(true)}
                           >
                             Edit
                           </button>
                           <button
                             onClick={deleteHandler}
-                            className="small-button"
+                              className="ml-3 border-2 font-medium rounded-full px-2 py-1 hover:text-black hover:border-black"
                           >
                             Delete
                           </button>
