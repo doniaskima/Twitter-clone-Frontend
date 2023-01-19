@@ -8,6 +8,7 @@ import SendMessageForm from "./SendMessageForm";
 import { useDispatch, useSelector } from 'react-redux';
 import { useSocket } from '../../SocketContext/socketContext';
 
+
 const Chats = () => {
   const { state: recipient } = useLocation();
   const { _id: userId } = useSelector((state) => state.user.data);
@@ -18,7 +19,7 @@ const Chats = () => {
 
   const socketNewMessageCallback = (info) => {
     dispatch(newMessage(info));
-  } 
+  };
 
   useEffect(() => {
     dispatch(fetchMessages({ userId, receiverId: recipient._id }));
@@ -33,21 +34,20 @@ const Chats = () => {
   return (
     <div className="fixed flex flex-col bg-white lg:static border w-full md:w-17/20 h-full lg:max-w-xl">
       <Header recipient={recipient} />
-      {
-        loadingMessages ? (
-          <div className="flex justify-center mt-2 ">
-            <Spinner/>
-          </div>
-        ) : (
-          <div className="pt-4 px-4 h-full overflow-auto">
-            {messages.map((msg) => {
-              return <Message key={msg.messageId} msg={msg} />;
-            })}
-          </div>
-        )}
+      {loadingMessages ? (
+        <div className="flex justify-center mt-2">
+          <Spinner />
+        </div>
+      ) : (
+        <div className="pt-4 px-2 h-full overflow-auto">
+          {messages.map((msg) => {
+            return <Message key={msg.messageId} msg={msg} />;
+          })}
+        </div>
+      )}
       <SendMessageForm recipient={recipient} />
     </div>
   );
 };
 
-export default Chats
+export default Chats;

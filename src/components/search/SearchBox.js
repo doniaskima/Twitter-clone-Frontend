@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserTileComponent from "../HomePageComponents/UserTileComponent";
+import { UserTileComponent } from "../HomePageComponents/UserTileComponent";
 import Spinner from "../Spinner";
 import SearchField from "./SearchField";
 import { useSearch } from "./useSearch";
@@ -14,7 +14,6 @@ const SearchBox = () => {
       setShowDropDown(false);
     }
   };
-  
   return (
     <div className="w-full mt-2">
       <SearchField
@@ -29,7 +28,7 @@ const SearchBox = () => {
         <div
           role="listbox"
           id="dropdown-1"
-          className="rounded-lg h-32 w-full shadow-md mb-2 text-center pt-4"
+          className="rounded-lg h-32 w-full shadow-md mb-2 text-center pt-4 overflow-y-auto "
         >
           {loading ? (
             <div className="flex justify-center">

@@ -32,7 +32,7 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
             )
             .open();
     }
-    
+
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(
@@ -45,22 +45,12 @@ const EditProfileModal = ({ setShowProfileModal, user }) => {
         setShowProfileModal(false);
     };
 
-    // const changeHandler = (e) => {
-    //     e.preventDefault();
-    //     const { name, value } = e.target;
-    //     setFormState({ ...formState, [name]: value });
+    const changeHandler = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        setFormState({ ...formState, [name]: value });
 
-    // };
-    const changeHandler = (event) => {
-        event.preventDefault();
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-        this.setFormState({
-            [name]: value
-        });
-    }
-
+    };
 
     return (
         <ModalWrapper

@@ -12,11 +12,10 @@ import SearchField from "../search/SearchField";
 const NewMessageModal = ({ setShowNewMessageModal }) => {
   const [searchText, setSearchText] = useState("");
   const [receiverEmail, setReceiverEmail] = useState("");
-  const dispatch = useDispatch();
-  const { result, loading } = useSearch();
-  const socket = useSocket();
   const { _id: id, email } = useSelector((state) => state.user.data);
-
+  const socket = useSocket();
+  const dispatch = useDispatch();
+  const { result, loading } = useSearch(searchText);
 
   const handleStart = () => {
     socket.emit("startMessage", {
@@ -26,14 +25,15 @@ const NewMessageModal = ({ setShowNewMessageModal }) => {
     });
     const recipient = result.find((obj) => obj.email === receiverEmail);
     dispatch(newChat(recipient));
-  }
-  
+    setShowNewMessageModal(false);
+  };
+
   return (
     <ModalWrapper
-    ariaLabel="New Message"
-    callback={() => setShowNewMessageModal(false)}
-  >
-        <div
+      ariaLabel="New Message"
+      callback={() => setShowNewMessageModal(false)}
+    >
+      <div
         className="p-2 bg-white rounded-md h-80 w-80 flex flex-col items-start"
         onClick={(e) => {
           e.stopPropagation();
@@ -66,9 +66,8 @@ const NewMessageModal = ({ setShowNewMessageModal }) => {
                   <div
                     key={user._id}
                     onClick={() => setReceiverEmail(user.email)}
-                    className={`flex mb-1 items-start cursor-pointer hover:bg-gray-50 space-x-2 px-1 py-2 ${
-                      receiverEmail === user.email && "bg-gray-100"
-                    }`}
+                    className={`user-tile-base-style space-x-2 px-1 py-2 ${receiverEmail === user.email && "bg-gray-100"
+                      }`}
                   >
                     <img
                       src={user.profileUrl}
@@ -88,14 +87,14 @@ const NewMessageModal = ({ setShowNewMessageModal }) => {
         </div>
         <button
           onClick={handleStart}
-          className="bg-blue-500 text-white font-semibold px-5 py-2 rounded-full shadow-md mt-auto ml-auto"
+          className="button mt-auto ml-auto"
           disabled={!searchText.trim().length}
         >
           Start
         </button>
       </div>
-  </ModalWrapper>
-  )
-}
+    </ModalWrapper>
+  );
+};
 
-export default NewMessageModal
+export default NewMessageModal;

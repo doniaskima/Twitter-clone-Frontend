@@ -27,3 +27,4 @@ const Feed = ({feed,isRetrievedUserPosts}) => {
 };
 
 export default Feed;
+ 
