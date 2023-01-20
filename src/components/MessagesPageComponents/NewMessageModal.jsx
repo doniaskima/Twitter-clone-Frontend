@@ -66,7 +66,7 @@ const NewMessageModal = ({ setShowNewMessageModal }) => {
                   <div
                     key={user._id}
                     onClick={() => setReceiverEmail(user.email)}
-                    className={`user-tile-base-style space-x-2 px-1 py-2 ${receiverEmail === user.email && "bg-gray-100"
+                    className={`flex mb-1 items-start cursor-pointer hover:bg-gray-50 space-x-2 px-1 py-2 ${receiverEmail === user.email && "bg-gray-100"
                       }`}
                   >
                     <img
