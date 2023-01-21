@@ -24,7 +24,9 @@ const Message = ({ msg }) => {
           }`}
       >
         {decryptedMessage}
-        <p className="absolute text-black -bottom-5 right-0 text-xs">
+
+        <p className={`absolute text-black -bottom-5  text-xs ${messageByUser ? "right-0" : "left-0"
+          }`}>
           {timestamp}
         </p>
         {showOptions && (

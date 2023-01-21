@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import SideNavigationBar from "../components/SideNavigationBar/SideNavigationBar";
 import SearchField from "../components/search/SearchField";
