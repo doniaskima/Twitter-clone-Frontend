@@ -15,8 +15,6 @@ const Messages = () => {
   const socket = useSocket();
   const { pathname } = useLocation();
 
- 
-
   useEffect(() => {
     socket.emit("connectUser", { name: user.name });
   }, []);
